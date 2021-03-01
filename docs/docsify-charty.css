@@ -1,0 +1,52 @@
+.charty {
+	margin: 2em 0;
+}
+
+.charty .bars {
+	display: grid;
+	grid-template-columns: repeat(auto, 1fr);
+	grid-template-rows: repeat( 100, 1fr );
+	grid-column-gap: 5px;
+	margin-top: 2em;
+	height: calc( var(--content-max-width) / 2 );
+}
+
+.charty .bars [class*="bar"] {
+	border-radius: 0.5em 0.5em 0 0;
+	transition: all 0.6s ease;
+	background-color: #888;
+	grid-row-start: 1;
+	grid-row-end: 101;
+	position: relative;
+	opacity: 0.7;
+}
+
+.charty [class*="bar"]:before,
+.charty [class*="bar"]:after {
+	color: #000;
+	font-size: 0.7em;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	opacity: 0.3;
+	transition: all 400ms;
+}
+
+.charty [class*="bar"]:after {
+	content: attr(data-number);
+	top: -1.8em;
+}
+
+.charty [class*="bar"]:before {
+	content: attr(data-label);
+	bottom: -2em;
+}
+
+.charty [class*="bar"]:hover { opacity: 1; }
+
+.charty [class*="bar"]:hover:before,
+.charty [class*="bar"]:hover:after {
+	opacity: 1;
+}
+
+.charty [class*="bar"]:hover:after { top: -2.5em; }

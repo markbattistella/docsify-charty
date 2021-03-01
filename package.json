@@ -1,0 +1,20 @@
+{
+	"name": "@markbattistella/docsify-charty",
+	"version": "0.0.1",
+	"description": "",
+	"main": "dist/docsify-charty.min.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/markbattistella/docsify-charty.git"
+	},
+	"author": "Mark Battistella",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/markbattistella/docsify-charty/issues"
+	},
+	"homepage": "https://github.com/markbattistella/docsify-charty#readme",
+	"keywords": [],
+	"directories": {
+		"doc": "docs"
+	}
+}
