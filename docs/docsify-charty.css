@@ -1,8 +1,19 @@
+/*! (c) Mark Battistella | charty.css | @markbattistella */
+
+
+/*
+ * main chart
+ */
 .charty {
 	margin: 2em 0;
 }
 
-.charty .bars {
+
+
+/*
+ * bar chart
+ */
+.charty[type="charty-bar"] .data-set {
 	display: grid;
 	grid-template-columns: repeat(auto, 1fr);
 	grid-template-rows: repeat( 100, 1fr );
@@ -11,7 +22,7 @@
 	height: calc( var(--content-max-width) / 2 );
 }
 
-.charty .bars [class*="bar"] {
+.charty[type="charty-bar"] .data-set [class*="data"] {
 	border-radius: 0.5em 0.5em 0 0;
 	transition: all 0.6s ease;
 	background-color: #888;
@@ -21,8 +32,8 @@
 	opacity: 0.7;
 }
 
-.charty [class*="bar"]:before,
-.charty [class*="bar"]:after {
+.charty[type="charty-bar"] [class*="data"]:before,
+.charty[type="charty-bar"] [class*="data"]:after {
 	color: #000;
 	font-size: 0.7em;
 	position: absolute;
@@ -32,21 +43,29 @@
 	transition: all 400ms;
 }
 
-.charty [class*="bar"]:after {
+.charty[type="charty-bar"] [class*="data"]:after {
 	content: attr(data-number);
 	top: -1.8em;
 }
 
-.charty [class*="bar"]:before {
+.charty[type="charty-bar"] [class*="data"]:before {
 	content: attr(data-label);
 	bottom: -2em;
 }
 
-.charty [class*="bar"]:hover { opacity: 1; }
+.charty[type="charty-bar"] [class*="data"]:hover { opacity: 1; }
 
-.charty [class*="bar"]:hover:before,
-.charty [class*="bar"]:hover:after {
+.charty[type="charty-bar"] [class*="data"]:hover:before,
+.charty[type="charty-bar"] [class*="data"]:hover:after {
 	opacity: 1;
 }
 
-.charty [class*="bar"]:hover:after { top: -2.5em; }
+.charty[type="charty-bar"] [class*="data"]:hover:after { top: -2.5em; }
+
+
+
+
+.charty[type="charty-section"] {}
+.charty[type="charty-section"]  svg {
+	height: 30em;
+}

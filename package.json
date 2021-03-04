@@ -16,5 +16,8 @@
 	"keywords": [],
 	"directories": {
 		"doc": "docs"
+	},
+	"scripts": {
+		"launch": "docsify serve ./docs -p 3015 -o"
 	}
 }
