@@ -21,15 +21,20 @@
 
 	<script>
 	window.$docsify = {
-		name: 'Chart generator',
-		repo: 'https://github.com/markbattistella/docsify-charty',
-		homepage: 'site/home.md',
-		loadSidebar: false,
-		hideSidebar: true,
-		auto2top: true,
-		notFoundPage: 'site/404.md',
-		relativePath: true,
-		themeColor: 'var(--mb-theme-02)',
+		name:				'Chart generator',
+		repo:				'https://github.com/markbattistella/docsify-charty',
+		homepage:			'home.md',
+		loadSidebar:		false,
+		hideSidebar:		true,
+		auto2top:			true,
+		notFoundPage:		'site/404.md',
+		relativePath:		true,
+		coverpage:			'site/cover.md',
+		themeColor:			'var(--mb-colour-red)',
+		tabs: {
+			persist:		true,
+			theme:			'material'
+		},
 
 		// plugin - charty
 		charty: {
@@ -46,6 +51,10 @@
 	<!-- local: docsify-charty -->
 	<link rel="stylesheet" href="docsify-charty.css">
 	<script src="docsify-charty.js"></script>
+
+
+	<!-- docsify: tabs -->
+	<script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
 
 </body>
 </html>
