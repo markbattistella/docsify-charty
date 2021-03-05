@@ -149,22 +149,83 @@ function charty( hook, vm ) {
 					// pie chart not whole
 					case 'charty-section' :
 
+
+
+
+
+
+
+
+// 	<div class="charty-columns">
+// 		<svg
+// 			class="charty-rows"
+// 			viewBox="-1 -1 2 2"
+// 			preserveAspectRatio="xMaxYMin meet">
+// 			<g style="transform:rotate(-90deg);">
+// 				<path d="M 1 0 A 1 1 0 1 1 -0.9980267284282716 -0.06279051952931333 L 0 0" fill="blue"></path>
+// 				<path d="M -0.9980267284282716 -0.06279051952931333 A 1 1 0 0 1 -0.7705132427757893 -0.6374239897486896 L 0 0" fill="green"></path>
+// 			</g>
+// 		</svg>
+// 		<fieldset class="charty-rows">
+// 			<legend>Legend</legend>
+//
+// 			<label><span style="background:blue;"></span>Dogs</label>
+// 			<label><span style="background:blue;"></span>Dogs</label>
+// 			<label><span style="background:blue;"></span>Dogs</label>
+// 			<label><span style="background:blue;"></span>Dogs</label>
+// 		</fieldset>
+// 	</div>
+
+
+
+
+
+
+
 						// create some variables
 						let totalPercent = 0;
 
 						const	xmlns	= 'http://www.w3.org/2000/svg',
+								flexbox	= document.createElement( 'div' ),
 								svg		= document.createElementNS(
 											xmlns,
 											'svg'
-										);
+										),
+								group	= document.createElementNS(
+											xmlns,
+											'g'
+										),
+								legend	= document.createElement( 'fieldset' );
 
-						// attribute for sizing based off css
+
+						// add attributes to the above elements
+						// -- flexbox container
+						flexbox.setAttribute( 'class', 'charty-columns' );
+
+						// -- svg container
+						svg.setAttribute( 'class', 'charty-rows' );
 						svg.setAttributeNS( null, 'viewBox', '-1 -1 2 2' );
-						svg.style.transform = 'rotate(-90deg)';
+						svg.setAttributeNS( null, 'preserveAspectRatio', 'xMaxYMin meet' );
+
+						// -- group container
+						group.style.transform = 'rotate(-90deg)';
+
+						// -- legend container
+						legend.setAttribute( 'class', 'charty-rows' );
+						legend.innerHTML = '<legend>Legend</legend>';
 
 
 						// loop through each data object
 						dataArray.forEach( data => {
+
+							// config: colour - global
+							dataColor	= chartyColor ?
+											data.color ? data.color :
+												chartyColor : '';
+
+							// config: top numbers
+							dataNumber	= chartyNumbers ?
+											` (${data.value.toFixed(2)}%)` : '';
 
 							// destructuring assignment
 							// -- sets the two variables at once
@@ -205,15 +266,33 @@ function charty( hook, vm ) {
 
 							// add the attributes
 							path.setAttribute( 'd', pathData );
-							path.setAttribute( 'fill', data.color );
+							path.setAttribute( 'fill', dataColor );
 
-							// append it to the svg element
-							svg.appendChild( path );
+							// add the paths to the group
+							group.appendChild( path );
+
+							// insert the legend items
+
+							legend.innerHTML += `<label><span style="background:${dataColor};"></span>${data.label}${dataNumber}</label>`;
 						});
+
+						// append the items
+						// -- add the group to the svg
+						// -- add the svg to the flexbox
+						svg.appendChild( group );
+						flexbox.appendChild( svg );
+
+						// if we want a legend
+						// TODO
+						if( chartyLabel ) {
+							flexbox.appendChild( legend );
+						}
+
 
 						// check if total percent is more than 100%
 						charty =	( totalPercent <= 1 ?
-										svg.outerHTML :
+										// svg.outerHTML :
+										flexbox.outerHTML :
 										null
 									);
 
@@ -256,6 +335,8 @@ function charty( hook, vm ) {
 						charty =	`<div class="data-set">${chartyData}</div>`;
 
 						break;
+
+
 
 					// exit if not matched
 					default:

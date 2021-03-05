@@ -1,5 +1,82 @@
 # Test
 
+
+```charty
+{
+    "title":  "Unit growth",
+    "config": {
+        "type":    "section",
+        "color":   "var(--mb-colour-blue)",
+		"labels":  false,
+		"numbers": true
+    },
+
+    "data": [
+        { "label": "2010",   "value": 0.556654641, "color": "blue"},
+		{ "label": "2015",   "value": 0.1,  "color": "green"}
+    ]
+}
+```
+
+
+
+
+<!--
+<div class="charty" type="charty-section">
+	<h3>Unit growth</h3>
+	<div class="charty-columns">
+		<svg
+			class="charty-rows"
+			viewBox="-1 -1 2 2"
+			preserveAspectRatio="xMaxYMin meet">
+			<g style="transform:rotate(-90deg);">
+				<path d="M 1 0 A 1 1 0 1 1 -0.9980267284282716 -0.06279051952931333 L 0 0" fill="blue"></path>
+				<path d="M -0.9980267284282716 -0.06279051952931333 A 1 1 0 0 1 -0.7705132427757893 -0.6374239897486896 L 0 0" fill="green"></path>
+			</g>
+		</svg>
+		<fieldset class="charty-rows">
+			<legend>Legend</legend>
+			<label><span style="background:blue;"></span>Dogs</label>
+			<label><span style="background:blue;"></span>Dogs</label>
+			<label><span style="background:blue;"></span>Dogs</label>
+			<label><span style="background:blue;"></span>Dogs</label>
+			<label><span style="background:blue;"></span>Dogs</label>
+		</fieldset>
+	</div>
+</div>
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  <!-- <svg viewBox="0 0 500 100" style="width: 500px; height: 100px; padding: 20px 20px 20px 0; border-left: 1px dotted #555; border-bottom: 1px dotted #555;">
   <polyline
      fill="none"
@@ -31,21 +108,3 @@
        440, 80"
    />
 </svg> -->
-
-
-```charty
-{
-    "title":  "Unit growth",
-    "config": {
-        "type":    "section",
-        "color":   "var(--mb-colour-blue)",
-		"labels":  true,
-		"numbers": true
-    },
-
-    "data": [
-        { "label": "2010",   "value": 0.01, "color": "green" },
-	    { "label": "entry1", "value": 0.99, "color": "var(--mb-colour-yellow)" }
-    ]
-}
-```

@@ -64,8 +64,59 @@
 
 
 
-
+/*
+ * pie chart - section chart
+ */
 .charty[type="charty-section"] {}
-.charty[type="charty-section"]  svg {
-	height: 30em;
+
+.charty[type="charty-section"] .charty-columns {
+	display: flex;
+	flex-direction: row;
+}
+
+.charty[type="charty-section"] .charty-rows {
+	flex: 50%;
+	align-self: center;
+}
+
+.charty[type="charty-section"] svg {
+	height: 20em;
+	width: 20em;
+	margin-top: 1em;
+}
+.charty[type="charty-section"] svg path[fill="undefined"] {
+	fill: var(--mb-colour-light);
+}
+
+.charty[type="charty-section"] fieldset {
+	margin-left: 2em;
+	border-width: 5px 0 0 0;
+	border-color: #CCC;
+	border-style: solid;
+	font-size: 14px;
+
+	max-width: 100%;
+}
+
+.charty[type="charty-section"] fieldset legend {
+	font-size: 1rem;
+	font-family: sans-serif;
+	font-weight: bold;
+	padding: 0 1em;
+	margin: 0 0 0.5em -1em;
+}
+
+.charty[type="charty-section"] fieldset label {
+	display: block;
+	text-indent: -2.5em;
+	margin: 0.5em 0 0 2.5em;
+	line-height: 1.5em;
+}
+.charty[type="charty-section"] fieldset label span {
+	height: 1em;
+	width: 1em;
+	border-radius: 0.25em;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 1em;
 }
