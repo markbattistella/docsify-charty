@@ -1,6 +1,6 @@
 <div align="center">
 
-# docsify-sidebarfooter
+# docsify-charty
 
 [![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD)
 [![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
@@ -14,13 +14,21 @@
 
 [](charty/pie.md ':include')
 
-#### **Donut**
+#### **Doughnut**
 
-[](charty/donut.md ':include')
+[](charty/doughnut.md ':include')
 
 #### **Section**
 
 [](charty/section.md ':include')
+
+#### **Column**
+
+[](charty/column.md ':include')
+
+#### **Column Compare**
+
+[](charty/column-compare.md ':include')
 
 #### **Bar**
 

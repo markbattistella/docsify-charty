@@ -157,9 +157,10 @@ function charty( hook, vm ) {
 				switch( chartyType ) {
 
 					// pie chart
-					// donut chart
-					case 'charty-pie'	:
-					case 'charty-donut'	:
+					// doughnut chart
+					case 'charty-pie'		:
+					case 'charty-donut'		: // US
+					case 'charty-doughnut'	: // AUS
 
 						// variables
 						var svg				= document.createElementNS(
@@ -265,8 +266,11 @@ function charty( hook, vm ) {
 
 						});
 
-						// if it is a donut chart
-						if( chartyType === 'charty-donut' ) {
+						// if it is a doughnut chart
+						if(
+							chartyType === 'charty-doughnut' ||
+							chartyType === 'charty-donut'
+						) {
 
 							// make a circle
 							const	middleHole = document.createElementNS(

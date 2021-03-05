@@ -2,7 +2,7 @@
 {
   "title":  "Labels and numbers",
   "config": {
-    "type":    "donut",
+    "type":    "doughnut",
     "labels":  true,
     "numbers": true
   },
@@ -18,7 +18,7 @@
 {
   "title":  "Labels, no numbers",
   "config": {
-    "type":    "donut",
+    "type":    "doughnut",
     "labels":  true,
     "numbers": false
   },
@@ -34,7 +34,7 @@
 {
   "title":  "No labels or numbers",
   "config": {
-    "type":    "donut",
+    "type":    "doughnut",
     "labels":  false,
     "numbers": false
   },
