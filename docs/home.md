@@ -14,13 +14,13 @@
 
 [](charty/pie.md ':include')
 
-#### **Section**
-
-[](charty/section.md ':include')
-
 #### **Donut**
 
 [](charty/donut.md ':include')
+
+#### **Section**
+
+[](charty/section.md ':include')
 
 #### **Bar**
 
@@ -29,5 +29,9 @@
 #### **Line**
 
 [](charty/line.md ':include')
+
+#### **Plot**
+
+[](charty/plot.md ':include')
 
 <!-- tabs:end -->

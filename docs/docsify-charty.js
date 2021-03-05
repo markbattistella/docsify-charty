@@ -108,7 +108,9 @@ function charty( hook, vm ) {
 					dataColor,
 					dataLabel,
 					dataNumber,
-					dataSize;
+					dataSize,
+					dataPercent,
+					dataColorHole;
 
 				// assemble the div
 				// -- add in the contents
@@ -133,7 +135,7 @@ function charty( hook, vm ) {
 												null,
 
 						chartyTheme		=	jsonConfig.color ?
-												jsonConfig.color : '',
+												jsonConfig.color : 'white',
 
 						chartyLabel		=	jsonConfig.labels ? true : false,
 
@@ -155,7 +157,9 @@ function charty( hook, vm ) {
 				switch( chartyType ) {
 
 					// pie chart
-					case 'charty-pie' :
+					// donut chart
+					case 'charty-pie'	:
+					case 'charty-donut'	:
 
 						// variables
 						var svg				= document.createElementNS(
@@ -201,15 +205,18 @@ function charty( hook, vm ) {
 						// loop through each data object
 						dataArray.forEach( data => {
 
-
 							// config: colour - global
-							dataColor	= chartyTheme ?
-											data.color ? data.color :
-												chartyTheme : '';
+							dataColor	= data.color ?
+												data.color : '';
+
+							// config: get the percent
+							dataPercent	= chartyNumbers ?
+											( ( data.value / totalValue ) * 100 ).toFixed( 2 ) : '';
 
 							// config: value numbers
 							dataNumber	= chartyNumbers ?
-											` (${data.value})` : '';
+											` (${data.value} - ${dataPercent}%)` :
+											'';
 
 							// compound the value
 							valueSum += data.value;
@@ -250,7 +257,6 @@ function charty( hook, vm ) {
 								'none'
 							);
 
-
 							// add the path(s) to the group
 							svg.appendChild( path );
 
@@ -259,9 +265,30 @@ function charty( hook, vm ) {
 
 						});
 
+						// if it is a donut chart
+						if( chartyType === 'charty-donut' ) {
+
+							// make a circle
+							const	middleHole = document.createElementNS(
+													w3, 'circle'
+												);
+
+							// [50%, 50%] @ 25% width
+							middleHole.setAttribute( 'cx', '50'	);
+							middleHole.setAttribute( 'cy', '50'	);
+							middleHole.setAttribute( 'r',  '25%'	);
+							middleHole.setAttribute( 'fill', chartyTheme	);
+
+							// overlay it
+							svg.appendChild( middleHole );
+						}
+
+
 						// add the svg to the flexbox element
 						flexbox.appendChild( svg );
 
+
+						// if there is a legend to display
 						if( chartyLabel ) {
 							flexbox.appendChild( legend );
 						}
@@ -269,12 +296,6 @@ function charty( hook, vm ) {
 						// add to the DOM
 						charty = flexbox.outerHTML;
 
-						break;
-
-
-
-					// pie chart with middle out
-					case 'charty-donut' :
 						break;
 
 
@@ -326,13 +347,11 @@ function charty( hook, vm ) {
 						dataArray.forEach( data => {
 
 							// config: colour - global
-							dataColor	= chartyTheme ?
-											data.color ? data.color :
-												chartyTheme : '';
+							dataColor	= data.color ? data.color : '';
 
 							// config: value numbers
 							dataNumber	= chartyNumbers ?
-											` (${data.value})` : '';
+											` (${data.value.toFixed(2)*100}%)` : '';
 
 							// destructuring assignment
 							// -- sets the two variables at once
@@ -372,19 +391,21 @@ function charty( hook, vm ) {
 							path.setAttribute( 'd', pathData );
 							path.setAttribute( 'fill', dataColor );
 
-							// add the paths to the group
-							group.appendChild( path );
-
 							// insert the legend items
 							legend.innerHTML += `<label><span style="background:${dataColor};"></span>${data.label}${dataNumber}</label>`;
 
+							// add the paths to the group
+							group.appendChild( path );
 						});
 
-						// append the items
-						// -- add the group to the svg
-						// -- add the svg to the flexbox
+						// add the svg to the flexbox element
 						svg.appendChild( group );
 						flexbox.appendChild( svg );
+
+						// is there a legend
+						if( chartyLabel ) {
+							flexbox.appendChild( legend );
+						}
 
 						// less the `1` or 100%
 						charty =	( totalPercent <= 1 ?
@@ -408,11 +429,8 @@ function charty( hook, vm ) {
 						dataArray.forEach( data => {
 
 							// config: colour - global
-							dataColor	= chartyTheme ?
-											data.color ?
-												`background:${data.color};`  :
-												`background:${chartyTheme};` :
-											'';
+							dataColor	= data.color ?
+											`background:${data.color};` : '';
 
 							// config: base label
 							dataLabel	= chartyLabel ?
@@ -435,6 +453,18 @@ function charty( hook, vm ) {
 						// assembly
 						charty =	`<div class="data-set">${chartyData}</div>`;
 
+						break;
+
+
+
+					// line chart
+					case 'charty-line' :
+						break;
+
+
+
+					// plot chart
+					case 'charty-plot' :
 						break;
 
 

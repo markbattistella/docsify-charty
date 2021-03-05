@@ -3,7 +3,6 @@
   "title":  "Labels and numbers",
   "config": {
     "type":    "section",
-    "color":   "var(--mb-colour-blue)",
     "labels":  true,
     "numbers": true
   },
@@ -20,7 +19,6 @@
   "title":  "Labels, no numbers",
   "config": {
     "type":    "section",
-    "color":   "var(--mb-colour-blue)",
     "labels":  true,
     "numbers": false
   },
@@ -37,7 +35,6 @@
   "title":  "No labels or numbers",
   "config": {
     "type":    "section",
-    "color":   "var(--mb-colour-blue)",
     "labels":  false,
     "numbers": false
   },
