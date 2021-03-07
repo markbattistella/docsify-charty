@@ -26,10 +26,6 @@
 
 [](charty/column.md ':include')
 
-#### **Column Compare**
-
-[](charty/column-compare.md ':include')
-
 #### **Bar**
 
 [](charty/bar.md ':include')

@@ -141,9 +141,27 @@ function charty( hook, vm ) {
 
 						chartyNumbers	=	jsonConfig.numbers ? true :	false,
 
-						totalValue		=	dataArray.reduce(( sum, slice ) =>
-												sum + slice.value, 0
-											);
+						totalValue		=	dataArray.reduce( ( acc, val ) => {
+											// min
+											acc[0] = (( acc[0] === undefined || val.value < acc[0] ) ?
+												val.value :
+												acc[0]
+											)
+
+											// max
+											acc[1] = (( acc[1] === undefined || val.value > acc[1] ) ?
+												val.value :
+												acc[1]
+											)
+
+											// total
+											acc[2] = ( acc[2] === undefined ?
+												val.value :
+												val.value + acc[2]
+											)
+
+											return acc;
+										}, [] );
 
 				// add the class
 				// set the type attribute
@@ -212,7 +230,7 @@ function charty( hook, vm ) {
 
 							// config: get the percent
 							dataPercent	= chartyNumbers ?
-											( ( data.value / totalValue ) * 100 ).toFixed( 2 ) : '';
+											( ( data.value / totalValue[2] ) * 100 ).toFixed( 2 ) : '';
 
 							// config: value numbers
 							dataNumber	= chartyNumbers ?
@@ -223,7 +241,7 @@ function charty( hook, vm ) {
 							valueSum += data.value;
 
 							// calculate the difference
-							diffence  = ( totalValue - data.value );
+							diffence  = ( totalValue[2] - data.value );
 
 							// create a path
 							const path = document.createElementNS( w3, 'path' );
@@ -243,7 +261,7 @@ function charty( hook, vm ) {
 							);
 							path.setAttribute(
 								'pathLength',
-								totalValue
+								totalValue[2]
 							);
 							path.setAttribute(
 								'stroke-width',
@@ -287,10 +305,8 @@ function charty( hook, vm ) {
 							svg.appendChild( middleHole );
 						}
 
-
 						// add the svg to the flexbox element
 						flexbox.appendChild( svg );
-
 
 						// if there is a legend to display
 						if( chartyLabel ) {
@@ -345,7 +361,6 @@ function charty( hook, vm ) {
 						// -- legend container
 						legend.setAttribute( 'class', 'charty-rows' );
 						legend.innerHTML = '<legend>Legend</legend>';
-
 
 						// loop through each data object
 						dataArray.forEach( data => {
@@ -426,11 +441,45 @@ function charty( hook, vm ) {
 
 
 
+						break;
+
+
+
+					// column chart
 					// bar chart
-					case 'charty-bar' :
+					case 'charty-column'	:
+					case 'charty-bar'		:
+
+						// check if grouping for comparison
+						const dataGroups = (
+
+							// has groups
+							(	jsonConfig.groups &&
+								!isNaN( jsonConfig.groups )
+							) ?
+
+								// total is divisible
+								( dataArray.length % jsonConfig.groups === 0 ) ?
+
+									// the group spacing
+									jsonConfig.groups :
+
+									// the default
+									1 :
+
+								// catch-all
+								1
+							),
+
+							itemType = ( chartyType.endsWith('column') ?
+											'row' :
+											'column'
+										);
+
+
 
 						// loop through each data object
-						dataArray.forEach( data => {
+						dataArray.forEach( (data, index) => {
 
 							// config: colour - global
 							dataColor	= data.color ?
@@ -447,27 +496,41 @@ function charty( hook, vm ) {
 											'';
 
 							// config: bar height
-							dataSize 	= `grid-row-start: calc( 100 - ${data.value} );`
+							dataSize 	= `grid-${itemType}-start: calc( 100 -
+											(${data.value} / ${totalValue[1]})
+												* 100 );`;
+
+							// config: group spacing
+							const dataSpacing = (
+								( (index + 1) % dataGroups === 0 ||
+									dataGroups === dataArray.length
+								) ?
+									'margin-right: 10px;' :
+									''
+							);
 
 							// build the data
-							chartyData += `<div class="data" style="${dataSize} ${dataColor}" ${dataLabel} ${dataNumber}></div>`;
+							chartyData += `<div class="data"
+												style="${dataSize}
+												${dataColor}${dataSpacing}"
+												${dataLabel}
+												${dataNumber}
+											>
+											</div>`;
 						});
 
-
 						// assembly
-						charty =	`<div class="data-set">${chartyData}</div>`;
+						charty =	`<div class="data-set">
+											${chartyData}
+									</div>`;
 
 						break;
 
 
 
-					// line chart
+					// line graph
+					// plot graph
 					case 'charty-line' :
-						break;
-
-
-
-					// plot chart
 					case 'charty-plot' :
 						break;
 

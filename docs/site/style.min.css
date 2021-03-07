@@ -15,7 +15,7 @@
 }
 
 .docsify-tabs__content { margin: 2em 0; padding: 0;}
-.docsify-tabs__tab { width: calc( 100% / 8 ); }
+.docsify-tabs__tab { width: calc( 100% / 7 ); }
 
 #main a[target="_blank"]:after{
     content:"\29C9";
@@ -178,9 +178,13 @@ img{
     border-radius:.6em;
     margin-bottom:1em!important
 }
+
+
+/* small screen */
 @media( max-width: 800px ){
     #linked-areas p a{
         flex:100%;
         margin:.5em 0!important
     }
+	.docsify-tabs__tab { width: 100%; }
 }
