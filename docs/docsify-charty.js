@@ -505,7 +505,10 @@ function charty( hook, vm ) {
 								( (index + 1) % dataGroups === 0 ||
 									dataGroups === dataArray.length
 								) ?
-									'margin-right: 10px;' :
+
+									(chartyType.endsWith('column') ?
+										'margin-right: 10px;' :
+										'margin-bottom: 10px;') :
 									''
 							);
 
