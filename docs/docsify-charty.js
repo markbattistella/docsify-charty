@@ -539,6 +539,48 @@ function charty( hook, vm ) {
 
 
 
+					// rating chart
+					case 'charty-rating' :
+
+						// loop through each data object
+						dataArray.forEach( (data, index) => {
+
+							// config: colour - global
+							dataColor	= data.color ?
+											`background:${data.color};` : '';
+
+							// config: base label
+							dataLabel	= chartyLabel ?
+											`<div class="rating-label">${data.label}</div>`	:
+											'';
+
+							// config: top numbers
+							dataNumber	= chartyNumbers ?
+											`<div class="rating-value">${data.value}</div>` :
+											'';
+
+							// config: bar width
+							const widthPercent = ( ( data.value / totalValue[1] ) * 100 ) + '%';
+
+							dataSize 	= `<div class="rating-bar-container"><div class="rating-bar-color" style="width: ${widthPercent};${dataColor}">&nbsp;</div></div>`;
+
+							// build the data
+							chartyData += `<div class="rating-row">
+											${dataLabel}
+											${dataNumber}
+											${dataSize}
+										</div>`;
+					});
+
+					// assembly
+					charty =	`<aside class="rating">
+										${chartyData}
+								</aside>`;
+
+						break;
+
+
+
 					// exit if not matched
 					default:
 						return;

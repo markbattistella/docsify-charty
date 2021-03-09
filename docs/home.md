@@ -38,4 +38,8 @@
 
 [](charty/plot.md ':include')
 
+#### **Rating**
+
+[](charty/rating.md ':include')
+
 <!-- tabs:end -->

@@ -15,13 +15,15 @@
 }
 
 .docsify-tabs__content { margin: 2em 0; padding: 0;}
-.docsify-tabs__tab { width: calc( 100% / 7 ); }
+.docsify-tabs__tab { width: calc( 100% / 8 ); }
 
 #main a[target="_blank"]:after{
     content:"\29C9";
     display:inline-block;
     margin-left:5px
 }
+#main:not([align=center]) a[target="_blank"]:after{ content: ''; }
+
 .mb-button{
     position:relative;
     text-decoration:none!important;
@@ -167,7 +169,7 @@ article#main a{
     padding-bottom:calc(var(--aspect-ratio,.5625) * 100%);
     height:0
 }
-.mbwrapper iframe,.mbwrapper video{
+.mbwrapper iframe,.mbwrapper video {
     position:absolute;
     top:0;
     left:0;

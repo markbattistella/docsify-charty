@@ -5,7 +5,7 @@
     "type":    "bar",
     "labels":  true,
     "numbers": true,
-	"groups":  4
+    "groups":  4
   },
   "data": [
     { "label": "2010", "value": 100, "color": "var(--mb-colour-green)"  },
@@ -38,7 +38,7 @@
     "type":    "bar",
     "labels":  true,
     "numbers": false,
-	"groups":  3
+    "groups":  3
   },
   "data": [
     { "label": "2012", "value": 10, "color": "var(--mb-colour-blue)"   },
