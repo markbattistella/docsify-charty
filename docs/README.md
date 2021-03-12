@@ -16,17 +16,20 @@
 
 Assuming you have a working [docsify](https://docsify.js.org/) framework set up, it is easy to use the plugin.
 
-1. Add the following script tag to your `index.html` via either CDN or downloading it and using it locally:
+1. Add the following script and stylesheet to your `index.html` via either CDN or downloading it and using it locally:
 
     ```html
     <!-- unpkg.com -->
     <script src="https://unpkg.com/@markbattistella/docsify-charty@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@markbattistella/docsify-charty@1.0.4/dist/docsify-charty.min.css">
 
     <!-- jsDelivr -->
     <script src="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
 
     <!-- locally -->
     <script src="docsify-charty.min.js"></script>
+    <link rel="stylesheet" href="docsify-charty.min.css">
     ```
 
 1. In docsify setup configure the plugin (see [configuration](#configuration) for setup):
@@ -35,6 +38,8 @@ Assuming you have a working [docsify](https://docsify.js.org/) framework set up,
     <script>
     window.$docsify = {
       charty: {
+        "theme": String,
+        "mode":  String
       },
     };
     </script>
@@ -48,7 +53,48 @@ Or if you're using `npm` to manage your dependencies:
 npm i @markbattistella/docsify-charty
 ```
 
-### Configuration
+## Configuration
+
+There is only two (optional) main configurations:
+
+?> **Note:** the `mode` is currently not active
+
+| Name    | Setting                                                   |
+|---------|-----------------------------------------------------------|
+| `theme` | Set a global theme for the item colours - needs to be HEX |
+| `mode`  | Dark or light theme - to compliment your design           |
+
+### Markdown code
+
+```json
+{
+  "title":  String,
+  "config": {
+    "type":    String,
+    "labels":  Bool,
+    "numbers": Bool,
+    "groups":  Int,
+    "color":   String
+  },
+  "data": [
+    { "label": String, "value": Int, "color": String }
+  ]
+}
+```
+
+| Option            | Required | Meaning                                      |
+|-------------------|----------|----------------------------------------------|
+| `title`           |          | This is the title of the chart / graph       |
+| `$config.type`    | Yes      | Type of charty graph: `bar / column / doughnut / donut / line / pie / plot / rating / section /sectional`                    |
+| `$config.labels`  |          | Show the data point labels or not            |
+| `$config.numbers` |          | Show the data point values or not            |
+| `$config.groups`  |          | If using `column` or `bar` you can have the graph space out the data every `n`. In a `rating` it is the max that the ratings are rated out of |
+| `$config.color`   |          | The global theme for all charty items - if no colours are manually set it will use this to make one                         |
+| `$data.label`     |          | Graph data point label                       |
+| `$data.value`     | Yes      | Graph value that puts it on the render       |
+| `$data.color`     |          | If you want to override the theme colour you can manually do it per data point |
+
+Not every option is available on every charty type, however the easiest way would be to look at the `docs/charty/` files :smile:
 
 ## Types of charts
 
@@ -56,41 +102,41 @@ npm i @markbattistella/docsify-charty
 
 #### With legend
 
-![](demo/01.jpg)
+![](/docs/demo/01.jpg)
 
 #### Without Legend
 
-![](demo/02.jpg)
+![](/docs/demo/02.jpg)
 
 ### Donut / Doughnut Chart
 
-![](demo/03.jpg)
+![](/docs/demo/03.jpg)
 
 ### Sectional chart
 
-![](demo/04.jpg)
+![](/docs/demo/04.jpg)
 
 ### Column chart
 
-![](demo/05.jpg)
+![](/docs/demo/05.jpg)
 
 ### Line graph
 
 ### Normal state
 
-![](demo/06.jpg)
+![](/docs/demo/06.jpg)
 
 ### Hover for details
 
-![](demo/07.jpg)
+![](/docs/demo/07.jpg)
 
 ### Plot graph
 
-![](demo/08.jpg)
+![](/docs/demo/08.jpg)
 
 ### Review / rating chart
 
-![](demo/09.jpg)
+![](/docs/demo/09.jpg)
 
 ## Contributing
 
