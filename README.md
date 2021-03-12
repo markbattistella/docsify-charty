@@ -1,1 +1,1 @@
-# docsify charty
+docs/README.md

@@ -17,7 +17,7 @@
 }
 
 .docsify-tabs__content { margin: 2em 0; padding: 0;}
-.docsify-tabs__tab { width: calc( 100% / 8 ); }
+.docsify-tabs__tab { width: calc( 100% / 9 ); }
 
 /* fonts */
 @font-face {

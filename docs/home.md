@@ -1,14 +1,8 @@
-<div align="center">
-
-# docsify-charty
-
-[![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD)
-[![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
-</div>
-
----
-
 <!-- tabs:start -->
+
+#### **Home**
+
+[](README.md ':include')
 
 #### **Pie**
 
