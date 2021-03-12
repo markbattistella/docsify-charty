@@ -1,6 +1,6 @@
 {
 	"name": "@markbattistella/docsify-charty",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "",
 	"main": "dist/docsify-charty.min.js",
 	"repository": {
