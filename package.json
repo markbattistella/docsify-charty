@@ -1,7 +1,7 @@
 {
 	"name": "@markbattistella/docsify-charty",
 	"version": "1.0.2",
-	"description": "",
+	"description": "Add charts and graphs to your docsify website",
 	"main": "dist/docsify-charty.min.js",
 	"repository": {
 		"type": "git",
@@ -13,7 +13,14 @@
 		"url": "https://github.com/markbattistella/docsify-charty/issues"
 	},
 	"homepage": "https://github.com/markbattistella/docsify-charty#readme",
-	"keywords": [],
+	"keywords": [
+		"docsify",
+		"plugin",
+		"charts",
+		"graphs",
+		"pie chart",
+		"line graph"
+	],
 	"directories": {
 		"doc": "docs"
 	},
