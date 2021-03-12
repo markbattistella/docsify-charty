@@ -8,7 +8,7 @@
 
 [](charty/pie.md ':include')
 
-#### **Doughnut**
+#### **Donut**
 
 [](charty/doughnut.md ':include')
 
