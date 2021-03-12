@@ -1,6 +1,11 @@
 /*! (c) Mark Battistella | charty.css | @markbattistella */
 
 
+:root {
+	--graph-size: 500;
+	--graph-node: 0.8em;
+}
+
 /*
  * main chart
  */
@@ -14,7 +19,10 @@
 	height: 100%;
 	width: 100%;
 }
-
+.charty ul,
+.charty ol {
+	list-style: none; margin: 0; padding: 0;
+}
 
 
 
@@ -48,7 +56,6 @@
 	transition: all 0.6s ease;
 	background-color: #888;
 	position: relative;
-	opacity: 0.7;
 }
 .charty[type="charty-column"] .data-set [class="data"] {
 	border-radius: 0.5em 0.5em 0 0;
@@ -76,7 +83,6 @@
 	font-size: 0.7em;
 	position: absolute;
 	text-align: center;
-	opacity: 0.3;
 	transition: all 400ms;
 }
 
@@ -113,18 +119,6 @@
 	right: -1.8em;
 }
 
-.charty[type="charty-column"] [class="data"]:hover,
-.charty[type="charty-bar"]    [class="data"]:hover {
-	opacity: 1;
-}
-
-.charty[type="charty-column"] [class="data"]:hover:before,
-.charty[type="charty-bar"]    [class="data"]:hover:before,
-.charty[type="charty-column"] [class="data"]:hover:after,
-.charty[type="charty-bar"]    [class="data"]:hover:after {
-	opacity: 1;
-}
-
 .charty[type="charty-column"] [class="data"]:hover:after {
 	top: -2.5em;
 }
@@ -137,7 +131,9 @@
 
 
 /*
- * pie chart
+ * pie chart - legend
+ * donut chart - legend
+ * section chart - legend
  */
 .charty[type*="charty-"] .charty-columns {
 	display: flex;
@@ -186,9 +182,147 @@
 
 
 /*
- * pie chart - section chart
+ * line chart
+ * plot chart
  */
+.charty[type="charty-line"] figure,
+.charty[type="charty-plot"] figure {
+	width:  calc( var(--graph-size) * 1px );
+	height: calc( var(--graph-size) * 1px );
+	border-width: 0 0 5px 5px;
+	border-style: solid;
+	border-color: var(--mb-colour-gray);
+	display: inline-block;
+	position: relative;
+}
 
+.charty[type="charty-line"] ul,
+.charty[type="charty-plot"] ul {
+	height: 100%;
+	width: 100%;
+}
+
+.charty[type="charty-line"] .data-point,
+.charty[type="charty-plot"] .data-point {
+	position: absolute;
+	z-index: 1;
+	bottom: calc( (1px * var(--y)) - ( var(--graph-node) / 2) );
+	left:   calc( (1px * var(--x)) - ( var(--graph-node) / 2) );
+	background: var(--mb-colour-blue);
+	border-radius: 50%;
+	width:  var(--graph-node);
+	height: var(--graph-node);
+	transition: all 400ms;
+}
+
+.charty[type="charty-line"] .data-point:before,
+.charty[type="charty-plot"] .data-point:before,
+.charty[type="charty-line"] .data-point:after,
+.charty[type="charty-plot"] .data-point:after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	font-size: 70%;
+	background: #FFF;
+	opacity: 0;
+	transition: all 400ms;
+}
+
+.charty[type="charty-line"] .data-point:before,
+.charty[type="charty-plot"] .data-point:before {
+	content: attr(data-number);
+	top: -2em;
+}
+
+.charty[type="charty-line"] .data-point:after,
+.charty[type="charty-plot"] .data-point:after {
+	content: attr(data-label);
+	top: -3.5em;
+	font-weight: bold;
+}
+
+.charty[type="charty-line"] figure:hover .data-point:before,
+.charty[type="charty-plot"] figure:hover .data-point:before,
+.charty[type="charty-line"] figure:hover .data-point:after,
+.charty[type="charty-plot"] figure:hover .data-point:after {
+	opacity: 1;
+}
+
+.charty[type="charty-line"] .data-point:hover,
+.charty[type="charty-plot"] .data-point:hover {
+	background: var(--mb-colour-red);
+}
+
+.charty[type="charty-line"] .segment,
+.charty[type="charty-plot"] .segment {
+	background-color: var(--mb-colour-light, #CCC);
+	height: 3px;
+	bottom: calc( var(--y) * 1px );
+	left: calc( var(--x) * 1px );
+	position: absolute;
+	transform: rotate( calc( var(--angle) * 1deg ) );
+	transform-origin: left bottom;
+	width: calc( var(--hypotenuse) * 1px );
+}
+
+
+
+
+
+
+
+
+
+
+/*
+* pie chart - section chart
+*/
+.charty[type="charty-rating"] .rating-row {
+	display: flex;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFF;
+	text-align: center;
+	line-height: 3em;
+	overflow: hidden;
+}
+.charty[type="charty-rating"] figcaption {
+	text-align: right;
+}
+
+.charty[type="charty-rating"] .rating-row:nth-of-type(1) {
+	border-radius: 5px 5px 0 0;
+}
+
+.charty[type="charty-rating"] .rating-row:nth-last-of-type(1) {
+	border-radius: 0 0 5px 5px;
+}
+
+.charty[type="charty-rating"] .rating-row > div {
+	margin: 1px 1px 0 0;
+	width: 100%;
+}
+
+.charty[type="charty-rating"] .rating-label {
+	max-width: 8em;
+	background: var(--mb-colour-gray);
+}
+
+.charty[type="charty-rating"] .rating-value {
+	max-width: 4em;
+	background: var(--mb-colour-gray2);
+}
+
+.charty[type="charty-rating"] .rating-bar-container {
+	width: 100%;
+	background: var(--mb-colour-light);
+}
+
+.charty[type="charty-rating"] .rating-bar-color {
+	width: 0%;
+	background: var(--mb-colour-green);
+}
 
 
 
@@ -211,4 +345,22 @@
 		padding-bottom: 2em;
 	}
 
+}
+
+@media( max-width: 320px ) {
+	:root {
+		--graph-size: 180;
+		--graph-node: 0.5em;
+	}
+	.charty[type="charty-line"] .data-point,
+	.charty[type="charty-plot"] .data-point {
+		bottom: calc( ((1px * var(--y)) - ( var(--graph-node) / 2)) * (180/500) );
+		left:   calc( ((1px * var(--x)) - ( var(--graph-node) / 2)) * (180/500) );
+	}
+	.charty[type="charty-line"] .segment,
+	.charty[type="charty-plot"] .segment {
+		bottom: calc( (var(--y) * 1px) * (180/500) );
+		left:   calc( (var(--x) * 1px) * (180/500) );
+		width:  calc( (var(--hypotenuse) * 1px) * (180/500) );
+	}
 }

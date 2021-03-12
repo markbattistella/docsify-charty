@@ -161,7 +161,34 @@ function charty( hook, vm ) {
 											)
 
 											return acc;
-										}, [] );
+										}, [] ),
+
+							// check if grouping for comparison
+							dataGroups	= (
+
+								// has groups
+								( 	jsonConfig.groups &&
+									!isNaN( jsonConfig.groups )
+								) ?
+
+									// total is divisible
+									( (dataArray.length % jsonConfig.groups === 0) || (chartyType === 'charty-rating') ) ?
+
+									// the group spacing
+									jsonConfig.groups :
+
+										// the default
+										1 :
+
+									// catch-all
+									1
+									),
+
+							itemType	= ( chartyType.endsWith('column') ?
+												'row' :
+												'column'
+										);
+
 
 				// add the class
 				// set the type attribute
@@ -321,7 +348,8 @@ function charty( hook, vm ) {
 
 
 					// pie chart not whole
-					case 'charty-section' :
+					case 'charty-section'	:
+					case 'charty-sectional'	:
 
 						// variables
 						var svg				= document.createElementNS(
@@ -441,42 +469,10 @@ function charty( hook, vm ) {
 
 
 
-						break;
-
-
-
 					// column chart
 					// bar chart
 					case 'charty-column'	:
 					case 'charty-bar'		:
-
-						// check if grouping for comparison
-						const dataGroups = (
-
-							// has groups
-							(	jsonConfig.groups &&
-								!isNaN( jsonConfig.groups )
-							) ?
-
-								// total is divisible
-								( dataArray.length % jsonConfig.groups === 0 ) ?
-
-									// the group spacing
-									jsonConfig.groups :
-
-									// the default
-									1 :
-
-								// catch-all
-								1
-							),
-
-							itemType = ( chartyType.endsWith('column') ?
-											'row' :
-											'column'
-										);
-
-
 
 						// loop through each data object
 						dataArray.forEach( (data, index) => {
@@ -535,6 +531,136 @@ function charty( hook, vm ) {
 					// plot graph
 					case 'charty-line' :
 					case 'charty-plot' :
+
+						const	widgetSize = getComputedStyle(
+												document.documentElement
+											).getPropertyValue(
+												'--graph-size'
+											).trim(),
+
+								base = ( widgetSize / dataArray.length ),
+
+								topMostPoint = totalValue[1],
+
+								pointSize = ( base / 2 ),
+
+								radiansToDegrees = (rads) =>
+									rads * (180 / Math.PI);
+
+						let leftOffset = pointSize,
+							nextPoint = 0,
+							rise = 0,
+							cssValues = [];
+
+						// loop the data
+						for(
+							var i = 0,
+							len = dataArray.length - 1;
+							i < len;
+							i++
+						) {
+
+							// create some blanks
+							var currentValue = {
+									value: 0,
+									left: 0,
+									bottom: 0,
+									hypotenuse: 0,
+									angle: 0
+								};
+
+							// add the current data
+							currentValue.value	 = dataArray[i].value;
+							currentValue.left	 = leftOffset;
+							leftOffset			+= base;
+
+							currentValue.bottom  = (
+								(widgetSize - pointSize) *
+								(currentValue.value / topMostPoint)
+							);
+
+							nextPoint			 = (
+								(widgetSize - pointSize) *
+								(dataArray[i+1].value / topMostPoint)
+							);
+
+							rise				 = (
+								currentValue.bottom - nextPoint
+							);
+							currentValue.hypotenuse = Math.sqrt(
+								(base * base) + (rise * rise)
+							);
+
+							currentValue.angle	 = radiansToDegrees(
+								Math.asin(rise / currentValue.hypotenuse)
+							);
+
+							// add them to the array
+							cssValues.push(currentValue);
+						}
+
+						// last point different data
+						var lastPoint = {
+							value: dataArray[dataArray.length - 1].value,
+							left: leftOffset,
+							bottom: (widgetSize - pointSize) * (dataArray[dataArray.length - 1].value / topMostPoint),
+							hypotenuse: 0,
+							angle: 0
+						};
+
+						// add the last item data to array
+						cssValues.push(lastPoint);
+
+						// loop through the markdown
+						dataArray.forEach( (data, index) => {
+
+							// config: colour - global
+							dataColor	= data.color ?
+										`style="background:${data.color};"` :
+										'';
+
+							// config: base label
+							dataLabel	= chartyLabel ?
+											`data-label="${data.label}"` : '';
+
+							// config: top numbers
+							dataNumber	= chartyNumbers ?
+											`data-number="${data.value}"` : '';
+
+							const dataLine = ( chartyType === 'charty-line' ?
+												// true
+												`<div class="segment" style="
+													--hypotenuse: ${cssValues[index].hypotenuse};
+													--angle: ${cssValues[index].angle};"
+												></div>` :
+												''
+											);
+
+							// add the data
+							chartyData += `<li style="
+								--x: ${cssValues[index].left};
+								--y: ${cssValues[index].bottom};
+							">
+								<div class="data-point"
+									${dataColor}
+									${dataLabel}
+									${dataNumber}
+								></div>
+								${dataLine}
+							</li>`;
+
+						});
+
+						// assembly
+						charty =	`<figure>
+										<ul>${chartyData}</ul>
+										<figcaption>
+											<small><em>
+												Hover to see values
+											</em></small>
+										<figcaption>
+									</figure>`;
+
 						break;
 
 
@@ -543,24 +669,40 @@ function charty( hook, vm ) {
 					case 'charty-rating' :
 
 						// loop through each data object
-						dataArray.forEach( (data, index) => {
+						dataArray.forEach( data => {
 
 							// config: colour - global
 							dataColor	= data.color ?
 											`background:${data.color};` : '';
 
-							// config: base label
+							// config: label
 							dataLabel	= chartyLabel ?
 											`<div class="rating-label">${data.label}</div>`	:
 											'';
 
-							// config: top numbers
+							// config: rating numbers
 							dataNumber	= chartyNumbers ?
-											`<div class="rating-value">${data.value}</div>` :
-											'';
+
+											// higher than max rating
+											( data.value > dataGroups ) ?
+												`<div class="rating-value">
+													${dataGroups}
+												</div>` :
+
+												( data.value < 0 ) ?
+													'<div class="rating-value">0</div>' :
+
+												// is less than max rating
+												`<div class="rating-value">${data.value}</div>` : '';
 
 							// config: bar width
-							const widthPercent = ( ( data.value / totalValue[1] ) * 100 ) + '%';
+							const widthPercent = ( data.value > dataGroups ) ?
+							 						'100%' :
+
+													( data.value < 0 ) ?
+														'0' :
+
+													( ( data.value / dataGroups ) * 100 ) + '%';
 
 							dataSize 	= `<div class="rating-bar-container"><div class="rating-bar-color" style="width: ${widthPercent};${dataColor}">&nbsp;</div></div>`;
 
@@ -573,10 +715,10 @@ function charty( hook, vm ) {
 					});
 
 					// assembly
-					charty =	`<aside class="rating">
-										${chartyData}
-								</aside>`;
-
+					charty =	`<figure class="rating">
+									${chartyData}
+									<figcaption><small><em>Ratings are out of a total of <strong>${dataGroups}</strong></em></small><figcaption>
+								</figure>`;
 						break;
 
 
