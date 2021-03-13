@@ -1,0 +1,425 @@
+/*
+ * docsify-charty.css v2.0.0 (https://markbattistella.github.io/docsify-charty/)
+ * Copyright (c) 2021 Mark Battistella (@markbattistella)
+ * Licensed under MIT
+ */
+
+
+
+
+
+/*
+ * core
+ */
+.docsify-charty {
+
+	/* colours */
+	--charty-colour-focus:	#FDCB6E;
+	--charty-colour-dark:	#333;
+	--charty-colour-light:	#CCC;
+	--charty-colour-medium:	#888;
+
+	/* colours - themes */
+
+	/* sizes */
+	--charty-size-title:	0;
+	--charty-size-baseline: 16;
+	--charty-size-hole:		50;
+	--charty-size-radius:	0.3;
+
+	/* normal */
+	position:		relative;
+    display:		block;
+    margin:			0 auto;
+    padding:		0;
+    border:			0;
+	width:			100%;
+	font-size:		calc( var(--charty-size-baseline) * 1px );
+	line-height:	calc( var(--charty-size-baseline) * 1px * 1.5 );
+	color:			var(--charty-colour-text);
+
+	/* printing colour */
+	color-adjust: exact;
+}
+
+.docsify-charty,
+.docsify-charty:before,
+.docsify-charty:after,
+.docsify-charty *,
+.docsify-charty *:before,
+.docsify-charty *:after {
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+
+.docsify-charty .container {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 4em !important;
+}
+
+.docsify-charty .container > * {
+	align-self: center;
+}
+
+.docsify-charty .dataset {
+	max-width: 25em;
+	width: 100%;
+}
+
+
+
+
+
+/*
+ * svg
+ */
+
+.docsify-charty .dataset svg {
+	overflow: visible;
+	max-width: 25em;
+	max-height: 25em;
+}
+
+/* all svg items */
+.docsify-charty .dataset svg * {
+	transform-origin: center center;
+}
+
+.docsify-charty .dataset polyline,
+.docsify-charty .dataset line,
+.docsify-charty .dataset.radar .data-header circle {
+	fill: none;
+	stroke: var(--charty-colour-light);
+}
+
+.docsify-charty text {
+	transition: all 600ms;
+	alignment-baseline: middle;
+	text-anchor: middle;
+	font-size: 15%;
+	fill: var(--charty-colour-light);
+}
+
+.docsify-charty .data-header text {
+	fill: var(--charty-colour-medium);
+}
+
+.docsify-charty .data-item text {
+	opacity: 0;
+}
+
+.docsify-charty .dataset.radar text {
+	font-size: 35%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * focus / highlighting
+ */
+.docsify-charty .focus:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	background: var(--charty-colour-focus);
+	border-radius: calc( var(--charty-size-radius) * 1em );
+	opacity: 0.5;
+	top:	0;
+	bottom:	0;
+	left:	0;
+	right:	0;
+}
+
+
+
+
+
+/* header */
+.docsify-charty header {
+	margin-bottom: 1.3em;
+}
+
+.docsify-charty h3 {
+	--charty-size-title: 1.35;
+	font-size: calc( var(--charty-size-title) * 1em);
+	font-weight: bold;
+	text-align: left;
+}
+
+.docsify-charty figcaption {
+	font-size: 0.9em;
+	color: var(--charty-colour-medium);
+}
+
+
+
+
+
+/* legend */
+.docsify-charty.legend fieldset {
+	order: 2;
+	margin-left: auto;
+	border-width: 5px 0 0 0;
+	border-color: var(--charty-colour-light);
+	border-style: solid;
+	font-size: 0.9em;
+	max-width: 30%;
+	width: 100%;
+}
+
+.docsify-charty.legend fieldset legend {
+	font-size: 1em;
+	font-family: sans-serif;
+	font-weight: bold;
+	padding: 0 1em;
+	margin: 0 0 0.5em -1em;
+}
+
+.docsify-charty.legend fieldset label {
+	display: block;
+	text-indent: -2em;
+	margin: 0.25em 0 0 2em;
+	line-height: 1.5em;
+	border-radius: 3px;
+	padding: 2px 5px;
+}
+
+.docsify-charty.legend fieldset label span {
+	height: 1em;
+	width: 1em;
+	margin-right: 1em;
+	border-radius: 0.2em;
+	display: inline-block;
+}
+
+.docsify-charty.legend fieldset label:hover {
+	background: var(--charty-colour-light);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* hover */
+.docsify-charty.legend .dataset .data-item {
+	opacity: 0.85;
+	transition: opacity 300ms;
+}
+
+.docsify-charty.legend.hover .dataset .data-item {
+	opacity: 0.1;
+}
+
+/* hover: heading */
+.docsify-charty header:hover ~ .container .data-text text,
+.docsify-charty header:hover ~ .container .data-item:after,
+
+/* hover: label */
+.docsify-charty .dataset .data-item.active .data-text text,
+.docsify-charty.legend.hover .dataset .data-item.active,
+
+/* hover: data-item */
+.docsify-charty .data-item:hover text,
+
+/* hover: data-text */
+.docsify-charty .data-text text:hover,
+.docsify-charty .data-text text.focus,
+.docsify-charty .dataset.bar .data-item:hover:after {
+	opacity: 1;
+}
+
+
+/* axes */
+.docsify-charty.axes .dataset {
+	padding: 0;
+	margin: 0;
+	border-width: 0 0 3px 3px;
+	border-style: solid;
+	border-color: var(--charty-colour-dark, #333);
+	position: relative;
+}
+
+.docsify-charty.axes .dataset[axes-horizontal] {
+	margin-bottom: 2em;
+}
+.docsify-charty.axes .dataset[axes-vertical] {
+	margin-left: 3.5em;
+}
+
+.docsify-charty.axes .dataset:before,
+.docsify-charty.axes .dataset:after  {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	width: 100%;
+	font-size: 0.7em;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+	color: var(--charty-colour-dark, #333);
+}
+
+.docsify-charty.axes .dataset:before {
+	content: attr(axes-horizontal);
+	bottom: -5.5em;
+}
+
+.docsify-charty.axes .dataset:after {
+	content: attr(axes-vertical);
+	transform-origin: top right;
+	left: calc( -100% - 5.5em );
+	transform: rotate(-90deg);
+}
+
+
+
+
+
+/* radar */
+.docsify-charty .dataset.radar svg {
+	transform: scale(0.5) translate(50%, 50%);
+}
+
+.docsify-charty .dataset.radar .data-header circle:nth-child( even ) {
+	opacity: 0.3;
+}
+
+.docsify-charty .dataset.radar .data-container,
+.docsify-charty .dataset.radar .data-header line,
+.docsify-charty .dataset.radar .data-header .data-text {
+	transform-origin: top left;
+}
+
+.docsify-charty .dataset.radar svg .data-header line {
+	transform: rotate( calc( var(--angle) * 1deg ) );
+}
+
+.docsify-charty .dataset.radar .data-header text {
+	font-weight: bold;
+	transform: rotate( calc( var(--angle) * 1deg ) );
+}
+
+
+
+/* pie - donut - section - rings */
+.docsify-charty .dataset.pie	 .data-item,
+.docsify-charty .dataset.donut	 .data-item,
+.docsify-charty .dataset.section .data-item,
+.docsify-charty .dataset.ring	 .data-item {
+	transform: rotate( -90deg );
+}
+
+.docsify-charty .dataset.donut #donut-hole circle {
+	fill: black;
+	r: calc( var(--charty-size-hole, 50) * 1% / 2 );
+}
+
+
+
+
+
+/* rings */
+.docsify-charty .dataset.ring .data-item circle.ring-bg {
+	fill: none;
+	stroke: var(--charty-colour-light);
+}
+
+
+
+/* bar - column */
+.docsify-charty .dataset.column .data-container,
+.docsify-charty .dataset.column-stack .data-container {
+	transform: rotate( 90deg );
+}
+
+
+
+
+
+/*
+ * rating
+ */
+
+.docsify-charty .dataset.rating {
+	max-width: none;
+}
+
+.docsify-charty .dataset.rating .data-item {
+	display: flex;
+	font-weight: bold;
+	color: #FFF;
+	text-align: center;
+	line-height: 2.5;
+	margin-top: 1px;
+}
+
+.docsify-charty .dataset.rating .data-item > div {
+	margin-right: 1px;
+	width: 100%;
+}
+
+.docsify-charty .dataset.rating .data-item .rating-label {
+	max-width: 10em;
+	background: var(--charty-colour-dark);
+}
+
+.docsify-charty .dataset.rating .data-item .rating-value {
+	max-width: 4em;
+	background: var(--charty-colour-dark);
+}
+
+.docsify-charty .dataset.rating .rating-bar-container {
+	background: var(--charty-colour-light, #CCC);
+}
+
+.docsify-charty .dataset.rating .rating-bar-colour {
+	width: 0%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * breakpoints
+ */
+@media( max-width: 800px ) {
+
+	.docsify-charty .container {
+		flex-direction: column;
+	}
+	.docsify-charty .container > * {
+		align-self: flex-start;
+	}
+	.docsify-charty.legend fieldset {
+		margin: 2em 0;
+		max-width: 25em;
+	}
+
+}

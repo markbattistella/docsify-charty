@@ -1,6 +1,6 @@
-# **charty** plugin<br>for docsify.js
+# **charty** plugin<br>for docsify.js :id=main
 
-Add some charts to your site
+Add some charts to your life
 
 [Read more &nbsp; &darr;](#docsify-charty)<br>
 <br>

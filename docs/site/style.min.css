@@ -1,7 +1,7 @@
 /*! (c) Mark Battistella | @markbattistella */
 
 :root {
-	--emoji-size:calc(1.3 * 1em);
+	--emoji-size: calc( 1.3 * 1em );
 	--mb-colour-green:	#00b894;
 	--mb-colour-yellow:	#fdcb6e;
 	--mb-colour-red:	#d63031;
@@ -16,8 +16,48 @@
 	--mb-colour-light:	#dfe6e9;
 }
 
-.docsify-tabs__content { margin: 2em 0; padding: 0;}
-.docsify-tabs__tab { width: calc( 100% / 9 ); }
+
+
+/* track */
+body { overflow-y: scroll; }
+
+::-webkit-scrollbar {
+	width: 20px;
+}
+
+::-webkit-scrollbar-track {
+	background: #FFF;
+	border-left: 1px solid #EEE;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--theme-color);
+}
+
+
+/* docsify cleanup */
+:root {
+	--tab-no: 11;
+}
+[class*=docsify-tabs--] .docsify-tabs__content {
+	margin: 2em 0;
+	padding: 0;
+	border: 0;
+}
+.docsify-tabs__tab {
+	width: calc( 100% / var(--tab-no) );
+	text-align: center;
+}
+.docsify-tabs__tab--active+.docsify-tabs__content {
+	overflow: visible;
+}
+.sidebar-toggle,
+.github-corner {
+	display: none;
+}
+
+
+
+
 
 /* fonts */
 @font-face {
