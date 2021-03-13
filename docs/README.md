@@ -14,18 +14,18 @@
 
 ### Update `index.html` file
 
-Assuming you have a working [docsify](https://docsify.js.org/) framework set up, it is easy to use the plugin.
+Assuming you have a working [docsify](https:/ify.js.org/) framework set up, it is easy to use the plugin.
 
 1. Add the following script and stylesheet to your `index.html` via either CDN or downloading it and using it locally:
 
     ```html
     <!-- unpkg.com -->
-    <script src="https://unpkg.com/@markbattistella/docsify-charty@latest"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@markbattistella/docsify-charty@1.0.4/dist/docsify-charty.min.css">
+    <script src="https://unpkg.com/@markbattistellaify-charty@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@markbattistellaify-charty@1.0.4/distify-charty.min.css">
 
     <!-- jsDelivr -->
-    <script src="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@markbattistellaify-charty@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@markbattistellaify-charty@latest/distify-charty.min.css">
 
     <!-- locally -->
     <script src="docsify-charty.min.js"></script>
@@ -50,7 +50,7 @@ Assuming you have a working [docsify](https://docsify.js.org/) framework set up,
 Or if you're using `npm` to manage your dependencies:
 
 ```sh
-npm i @markbattistella/docsify-charty
+npm i @markbattistellaify-charty
 ```
 
 ## Configuration
@@ -102,47 +102,47 @@ Not every option is available on every charty type, however the easiest way woul
 
 #### With legend
 
-![](/docs/demo/01.jpg)
+![](demo/01.jpg)
 
 #### Without Legend
 
-![](/docs/demo/02.jpg)
+![](demo/02.jpg)
 
 ### Donut / Doughnut Chart
 
-![](/docs/demo/03.jpg)
+![](demo/03.jpg)
 
 ### Sectional chart
 
-![](/docs/demo/04.jpg)
+![](demo/04.jpg)
 
 ### Column chart
 
-![](/docs/demo/05.jpg)
+![](demo/05.jpg)
 
 ### Line graph
 
 ### Normal state
 
-![](/docs/demo/06.jpg)
+![](demo/06.jpg)
 
 ### Hover for details
 
-![](/docs/demo/07.jpg)
+![](demo/07.jpg)
 
 ### Plot graph
 
-![](/docs/demo/08.jpg)
+![](demo/08.jpg)
 
 ### Review / rating chart
 
-![](/docs/demo/09.jpg)
+![](demo/09.jpg)
 
 ## Contributing
 
 1. Clone the repo:
 
-    `git clone https://github.com/markbattistella/docsify-charty.git`
+    `git clone https://github.com/markbattistellaify-charty.git`
 
 1. Create your feature branch:
 

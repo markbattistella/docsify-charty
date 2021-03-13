@@ -8,7 +8,7 @@
     "groups":  4
   },
   "data": [
-    { "label": "2010", "value": 100, "color": "var(--mb-colour-green)" },
+    { "label": "2010", "value": 10, "color": "var(--mb-colour-green)" },
     { "label": "2011", "value": 150, "color": "var(--mb-colour-blue)"  },
     { "label": "2012", "value": 30, "color": "var(--mb-colour-green)"  },
     { "label": "2013", "value": 90, "color": "var(--mb-colour-yellow)" },
