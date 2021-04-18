@@ -1,3 +1,5 @@
+<div style="background:#fab1a0;">:warning: **This repo / package is going to be updated to v2.0.0 soon(ish). There are some big changes :warning:**</div>
+
 <div align="center">
 
 # docsify-charty
