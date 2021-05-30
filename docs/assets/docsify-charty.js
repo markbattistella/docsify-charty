@@ -632,11 +632,6 @@ function charty( hook, vm ) {
 							'data-label'				// value
 						);
 
-						// add the items to the container group
-						radarDataHeader.appendChild( radarDataLines );
-						radarDataHeader.appendChild( radarDataRings );
-						radarDataHeader.appendChild( radarDataText );
-
 						// add the rings
 						for( var i = 1; i <= 5; i++ ) {
 							radarDataRings.innerHTML +=
@@ -644,6 +639,16 @@ function charty( hook, vm ) {
 								( i * 20 ) +
 								'"/>';
 						}
+
+						// add the items to the container group
+						radarDataHeader.appendChild( radarDataLines );
+						radarDataHeader.appendChild( radarDataRings );
+
+						// -- show labels
+						if( chartyJSONOptionsLabel ) {
+							radarDataHeader.appendChild( radarDataText );
+						}
+
 
 						// add in the titles for the heading rings
 						if( radarDataPoints.length > 0 ) {
@@ -862,7 +867,13 @@ function charty( hook, vm ) {
 
 							// add in the items
 							radarDataItem.appendChild( radarDataShape );
-							radarDataItem.appendChild( radarDataLabels );
+
+							// -- show values
+							if( chartyJSONOptionsNumbers ) {
+								radarDataItem.appendChild( radarDataLabels );
+							}
+
+							// add the data-item to group
 							group.appendChild( radarDataItem );
 
 						});
@@ -935,12 +946,17 @@ function charty( hook, vm ) {
 									stroke-dasharray="4,4"
 								/>`;
 
-							areaDataHeaderLine.innerHTML +=
+							areaDataHeaderText.innerHTML +=
 								`<text x="${ -5 }" y="${ yPos }">${ number }</text>`;
 						}
 
 						// add them to the main container
-						areaDataHeader.appendChild( areaDataHeaderText );
+						// -- show labels
+						if( chartyJSONOptionsLabel ) {
+							areaDataHeader.appendChild( areaDataHeaderText );
+						}
+
+						// -- show lines
 						areaDataHeader.appendChild( areaDataHeaderLine );
 
 						// add it into the group-container
@@ -1063,7 +1079,12 @@ function charty( hook, vm ) {
 
 							// add it into the group
 							areaDataItem.appendChild( areaDataPolygon );
-							areaDataItem.appendChild( areaDataLabels );
+
+							// -- show labels
+							if( chartyJSONOptionsNumbers ) {
+								areaDataItem.appendChild( areaDataLabels );
+							}
+
 							group.appendChild( areaDataItem );
 
 							// if there is a legend
@@ -1109,19 +1130,27 @@ function charty( hook, vm ) {
 							),
 
 							// config: value numbers
-							circleDataNumber = ( chartyJSONData[ index ].value ?
+							// -- show values
+							circleDataNumber = ( chartyJSONOptionsNumbers ?
 
-								// -- leave sectional values
-								chartyType === 'section' ?
+								// -- is there a value
+								chartyJSONData[ index ].value ?
 
-						 			// output the value as percentage
-						 			` (${ (data.value * 100) .toFixed(2) }%)` :
+									// -- leave sectional values
+									chartyType === 'section' ?
 
-						 			// output the value as is
-						 			` (${ data.value.toLocaleString()} - ${ (circleDataPercent * 100).toFixed(2) }%)` :
+						 				// output the value as percentage
+						 				` (${ (data.value * 100) .toFixed(2) }%)` :
+
+						 				// output the value as is
+						 				` (${ data.value.toLocaleString()} - ${ (circleDataPercent * 100).toFixed(2) }%)` :
+
+									// catch-all
+									null
+								:
 
 								// catch-all
-								null
+								''
 							);
 
 							// find the start of the arc points
@@ -1197,9 +1226,14 @@ function charty( hook, vm ) {
 							// if there is a legend
 							if( chartyJSONOptionsLegend ) {
 
+								const circleDataLabel = (
+									chartyJSONOptionsLabel ?
+										data.label : ''
+								);
+
 								// add the data
 								legend.innerHTML += `<label>
-									<span style="background:${chartyColours[ index  ]};"></span>${data.label} ${circleDataNumber}</label>`;
+									<span style="background:${ chartyColours[ index ]};"></span>${ circleDataLabel } ${ circleDataNumber }</label>`;
 							}
 
 							// add it into the group-container
@@ -1385,9 +1419,18 @@ function charty( hook, vm ) {
 							// if there is a legend
 							if( chartyJSONOptionsLegend ) {
 
+								const ringDataLabel = (
+									chartyJSONOptionsLabel ?
+										data.label : ''
+								),
+								ringDataValue = (
+									chartyJSONOptionsNumbers ?
+										` (${ ringPercent.toFixed( 2 ) * 100 }%)` : ''
+								);
+
 								// add the data
 								legend.innerHTML += `<label>
-									<span style="background:${chartyColours[ index ]};"></span>${data.label}  (${ringPercent.toFixed( 2 ) * 100 }%)</label>`;
+									<span style="background:${chartyColours[ index ]};"></span>${ ringDataLabel }${ ringDataValue }</label>`;
 							}
 
 						});
@@ -1464,12 +1507,17 @@ function charty( hook, vm ) {
 									stroke-dasharray="4,4"
 								/>`;
 
-							plotDataHeaderLine.innerHTML +=
+							plotDataHeaderText.innerHTML +=
 								`<text x="${ -5 }" y="${ yPos }">${ number }</text>`;
 						}
 
 						// add them to the main container
-						plotDataHeader.appendChild( plotDataHeaderText );
+						// -- show numbers
+						if( chartyJSONOptionsLabel ) {
+							plotDataHeader.appendChild( plotDataHeaderText );
+						}
+
+						// -- show lines
 						plotDataHeader.appendChild( plotDataHeaderLine );
 
 						// add it into the group-container
@@ -1638,7 +1686,12 @@ function charty( hook, vm ) {
 								plotDataTextItem.innerHTML = item;
 
 								// add the text to the container
-								plotDataText.appendChild( plotDataTextItem );
+								// -- show values
+								if( chartyJSONOptionsNumbers ) {
+									plotDataText.appendChild(
+										plotDataTextItem
+									);
+								}
 
 								// add the points to the data-item
 								plotDataItem.appendChild( plotDataPointItem );
@@ -1715,7 +1768,7 @@ function charty( hook, vm ) {
 						// ---- get the columns
 						// ---- then the sum of the columns
 						chartyJSONDataColumn = chartyJSONData.map(
-							(current, index, arr) => {
+							( current, index, arr ) => {
 
 							// create the blanks
 							let outputArray = [],
@@ -1829,10 +1882,15 @@ function charty( hook, vm ) {
 
 							// -- label text
 							labelNumber = (
-								Math.round(
-									chartyJSONDataNumbers[ 0 ].largest -
-									( chartyJSONDataNumbers[ 0 ].largest / 10 * ( i - 1 ) )
-								)
+								!isStacked ?
+									Math.round(
+										chartyJSONDataNumbers[ 0 ].largest -
+										( chartyJSONDataNumbers[ 0 ].largest / 10 * ( i - 1 ) )
+									)
+
+								// not stacked
+								:
+									100 - ( 100 / 10 * ( i - 1 ) )
 							);
 
 							// -- add: lines
@@ -1857,7 +1915,12 @@ function charty( hook, vm ) {
 
 
 						// the parts to the data-header
-						barDataHeader.appendChild( barDataHeaderLabel );
+						// -- show labels
+						if( chartyJSONOptionsLabel ) {
+							barDataHeader.appendChild( barDataHeaderLabel );
+						}
+
+						// -- show lines
 						barDataHeader.appendChild( barDataHeaderLines );
 
 						// add it into the group-container
@@ -1977,13 +2040,11 @@ function charty( hook, vm ) {
 										/>
 									`;
 
-									barDataText.innerHTML +=
-										`<text
-											filter="url(#text-bg)"
-											y="${ barDataItemOffset + ( barDataItemPercent / 2 ) }"
-											x="${ ( widthOfColumn / 2 ) + ( i *  widthOfColumn ) }">
-											${item}
-										</text>`;
+									// -- show values
+									if( chartyJSONOptionsNumbers ) {
+										barDataText.innerHTML +=
+											`<text filter="url(#text-bg)" y="${ barDataItemOffset + ( barDataItemPercent / 2 ) }" x="${ ( widthOfColumn / 2 ) + ( i *  widthOfColumn ) }">${ item }</text>`;
+									}
 
 								// -- normal data
 								} else {
@@ -2023,13 +2084,11 @@ function charty( hook, vm ) {
 										</text>`;
 
 									// add in the hover text
-									barDataText.innerHTML +=
-										`<text
-											filter="url(#text-bg)"
-											y="${ 100 - barDataItemPercent }"
-											x="${ ( sizeOfValue * index ) + ( widthOfColumn * i ) + sizeOfValueHalf }">
-											${ item }
-										</text>`;
+									// -- show values
+									if( chartyJSONOptionsNumbers ) {
+										barDataText.innerHTML +=
+											`<text filter="url(#text-bg)" y="${ 100 - barDataItemPercent }" x="${ ( sizeOfValue * index ) + ( widthOfColumn * i ) + sizeOfValueHalf }">${ item }</text>`;
+									}
 								}
 
 							});
@@ -2055,66 +2114,66 @@ function charty( hook, vm ) {
 					case 'rating' :
 
 						// constants
-						const reviewMaxValue = chartyJSONDataNumbers[0].max;
+						const ratingMaxValue = chartyJSONDataNumbers[0].max;
 
-						// loop through all the charty review items
+						// loop through all the charty rating items
 						chartyJSONData.forEach( ( data, index ) => {
 
 							// constansts
 							// -- data-item
-							const reviewDataItem = document.createElement(
+							const ratingDataItem = document.createElement(
 								'div'
 							),
 
 							// -- data-item rating-label
-							reviewDataItemLabel = document.createElement(
+							ratingDataItemLabel = document.createElement(
 								'div'
 							),
 
 							// -- data-item rating-value
-							reviewDataItemValue = document.createElement(
+							ratingDataItemValue = document.createElement(
 								'div'
 							),
 
 							// -- data-item rating-bar-container
-							reviewDataItemBarContainer = document.createElement(
+							ratingDataItemBarContainer = document.createElement(
 								'div'
 							),
 
 							// -- data-item rating-bar-colour
-							reviewDataItemBarColour = document.createElement(
+							ratingDataItemBarColour = document.createElement(
 								'div'
 							),
 
 							// calculate percentage of bar
-							reviewDataItemBarColourSize = (
-								( data.value / reviewMaxValue ) * 100
+							ratingDataItemBarColourSize = (
+								( data.value / ratingMaxValue ) * 100
 							);
 
 
 							// add the class
-							reviewDataItem.setAttribute(
+							ratingDataItem.setAttribute(
 								'class',		// property
 								'data-item'		// value
 							);
 
-							reviewDataItemLabel.setAttribute(
+							ratingDataItemLabel.setAttribute(
 								'class',		// property
 								'rating-label'	// value
 							);
 
-							reviewDataItemValue.setAttribute(
+							ratingDataItemValue.setAttribute(
 								'class',		// property
 								'rating-value'	// value
 							);
 
-							reviewDataItemBarContainer.setAttribute(
+							ratingDataItemBarContainer.setAttribute(
 								'class',		// property
 								'rating-bar-container'
 												// value
 							);
 
-							reviewDataItemBarColour.setAttribute(
+							ratingDataItemBarColour.setAttribute(
 								'class',		// property
 								'rating-bar-colour'
 												// value
@@ -2122,38 +2181,46 @@ function charty( hook, vm ) {
 
 
 							// add the data
-							reviewDataItemLabel.innerHTML = data.label;
-							reviewDataItemValue.innerHTML = data.value;
+							ratingDataItemLabel.innerHTML = data.label;
+							ratingDataItemValue.innerHTML = data.value;
 
-							reviewDataItemBarColour.setAttribute(
+							ratingDataItemBarColour.setAttribute(
 								'style',		// property
-								`width: ${ reviewDataItemBarColourSize }%; background-color: ${ chartyColours[ index ] };`
+								`width: ${ ratingDataItemBarColourSize }%; background-color: ${ chartyColours[ index ] };`
 												// value
 							);
 
 
+							// add to the rating data-item
+							// -- show labels
+							if( chartyJSONOptionsLabel ) {
+								ratingDataItem.appendChild(
+									ratingDataItemLabel
+								);
+							}
 
+							// -- show values
+							if( chartyJSONOptionsNumbers ) {
+								ratingDataItem.appendChild(
+									ratingDataItemValue
+								);
+							}
 
-
-
-							// add to the review data-item
-							reviewDataItem.appendChild(
-								reviewDataItemLabel
+							// -- bar data
+							ratingDataItem.appendChild(
+								ratingDataItemBarContainer
 							);
-							reviewDataItem.appendChild(
-								reviewDataItemValue
-							);
-							reviewDataItem.appendChild(
-								reviewDataItemBarContainer
-							);
-							reviewDataItemBarContainer.appendChild(
-								reviewDataItemBarColour
+							ratingDataItemBarContainer.appendChild(
+								ratingDataItemBarColour
 							);
 
 							// add it into the dom
-							dataset.appendChild( reviewDataItem );
+							dataset.appendChild( ratingDataItem );
 
 						});
+
+						// footer notice
+						dataset.innerHTML += `<small><em>Ratings are out of a total of <strong>${ ratingMaxValue }</strong></em></small>`;
 
 						break;
 

@@ -361,13 +361,27 @@
 	max-width: none;
 }
 
+.docsify-charty .dataset.rating small {
+	display: block;
+	text-align: right;
+}
+
 .docsify-charty .dataset.rating .data-item {
 	display: flex;
 	font-weight: bold;
 	color: #FFF;
 	text-align: center;
-	line-height: 2.5;
+	line-height: 2.75;
 	margin-top: 1px;
+	overflow: hidden;
+}
+
+.docsify-charty .dataset.rating .data-item:nth-of-type(1) {
+	border-radius: 2px 2px 0 0;
+}
+
+.docsify-charty .dataset.rating .data-item:nth-last-of-type(1) {
+	border-radius: 0 0 2px 2px;
 }
 
 .docsify-charty .dataset.rating .data-item > div {
@@ -382,17 +396,17 @@
 
 .docsify-charty .dataset.rating .data-item .rating-value {
 	max-width: 4em;
-	background: var(--charty-colour-dark);
+	background: var(--charty-colour-medium);
 }
 
 .docsify-charty .dataset.rating .rating-bar-container {
-	background: var(--charty-colour-light, #CCC);
+	background: var(--charty-colour-light);
 }
 
 .docsify-charty .dataset.rating .rating-bar-colour {
 	width: 0%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: var(--charty-colour-light);
 }
 
 

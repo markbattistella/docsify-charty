@@ -6,7 +6,7 @@
   "options": {
 	"legend":  true,
     "labels":  true,
-    "numbers": false
+    "numbers": true
   },
   "data": [
 	  { "label": "2012", "value": 0.3 },

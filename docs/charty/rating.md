@@ -4,7 +4,6 @@
   "caption": "With a caption",
   "type":    "review",
   "options": {
-	"legend":  true,
     "labels":  true,
     "numbers": true
   },
