@@ -248,6 +248,14 @@ article#main a{
     font-weight:700;
     color:var(--blockquote-color)
 }
+
+.markdown-section li p {
+	margin: 0;
+}
+.markdown-section li {
+	margin-bottom: 1em;
+}
+
 .markdown-section ol ol,.markdown-section ul ol{
     list-style-type:lower-alpha
 }

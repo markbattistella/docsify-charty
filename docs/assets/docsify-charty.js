@@ -45,9 +45,9 @@ function getChartyOptions( chartyOptions ) {
 // MARK: - default configuration settings
 //
 const chartyOptions = {
-	theme:	'#0984E3',
-	mode:	'light',
-	debug:	false
+	theme:	'',
+	mode:	'',
+	debug:	0
 };
 
 
@@ -63,9 +63,9 @@ function charty( hook, vm ) {
 	const	chartyOptionsArray = getChartyOptions( chartyOptions ),
 
 			// create global options
-			// configTheme		= chartyOptionsArray[0],
-			// configMode		= chartyOptionsArray[1],
-			// configDebug		= chartyOptionsArray[2],
+			configTheme		= chartyOptionsArray[0],
+			configMode		= chartyOptionsArray[1],
+			configDebug		= chartyOptionsArray[2],
 
 			acceptedCharts		= [
 				'radar',
@@ -88,12 +88,7 @@ function charty( hook, vm ) {
 				'bar-stacked',
 				'column-stack',
 				'column-stacked'
-			],
-
-			// TODO: remove static items
-			configTheme		= "#F04903",
-			configMode		= "light",
-			configDebug		= true;
+			];
 
 
 	//
@@ -1821,11 +1816,11 @@ function charty( hook, vm ) {
 						if( !isStacked ) {
 
 							const orientationHorizontal = (
-								isColumn ? 'horizontal' : 'vertical'
+								isColumn ? 'vertical' : 'horizontal'
 							),
 
 							orientationVertical = (
-								isColumn ? 'vertical' : 'horizontal'
+								isColumn ? 'horizontal' : 'vertical'
 							);
 
 							// -- axes
@@ -1874,7 +1869,7 @@ function charty( hook, vm ) {
 
 							// -- move the labels to the bottom
 							const headerLabelOffset = (
-								isColumn ? 110 : 0
+								!isColumn ? 110 : 0
 							),
 
 							// -- separate the lines
@@ -2338,6 +2333,7 @@ function charty( hook, vm ) {
 				//  hover: off
 				el.addEventListener('mouseout', e => {
 
+					// remove the class
 					item.classList.remove( 'hover' );
 
 					docsifyChartyDataItems.forEach( r =>

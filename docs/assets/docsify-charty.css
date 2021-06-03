@@ -6,8 +6,6 @@
 
 
 
-
-
 /*
  * core
  */
@@ -69,8 +67,6 @@
 
 
 
-
-
 /*
  * svg
  */
@@ -115,15 +111,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 /*
  * focus / highlighting
  */
@@ -142,9 +129,9 @@
 
 
 
-
-
-/* header */
+/*
+ * header
+ */
 .docsify-charty header {
 	margin-bottom: 1.3em;
 }
@@ -163,9 +150,9 @@
 
 
 
-
-
-/* legend */
+/*
+ * legend
+ */
 .docsify-charty.legend fieldset {
 	order: 2;
 	margin-left: auto;
@@ -208,15 +195,9 @@
 
 
 
-
-
-
-
-
-
-
-
-/* hover */
+/*
+ * hover events
+ */
 .docsify-charty.legend .dataset .data-item {
 	opacity: 0.85;
 	transition: opacity 300ms;
@@ -245,7 +226,10 @@
 }
 
 
-/* axes */
+
+/*
+ * axes
+ */
 .docsify-charty.axes .dataset {
 	padding: 0;
 	margin: 0;
@@ -290,9 +274,9 @@
 
 
 
-
-
-/* radar */
+/*
+ * charty - radar
+ */
 .docsify-charty .dataset.radar svg {
 	transform: scale(0.5) translate(50%, 50%);
 }
@@ -318,7 +302,9 @@
 
 
 
-/* pie - donut - section - rings */
+/*
+ * charty - pie / donut / section / ring
+ */
 .docsify-charty .dataset.pie	 .data-item,
 .docsify-charty .dataset.donut	 .data-item,
 .docsify-charty .dataset.section .data-item,
@@ -331,11 +317,6 @@
 	r: calc( var(--charty-size-hole, 50) * 1% / 2 );
 }
 
-
-
-
-
-/* rings */
 .docsify-charty .dataset.ring .data-item circle.ring-bg {
 	fill: none;
 	stroke: var(--charty-colour-light);
@@ -343,20 +324,19 @@
 
 
 
-/* bar - column */
-.docsify-charty .dataset.column .data-container,
-.docsify-charty .dataset.column-stack .data-container {
+/*
+ * charty - bar / column
+ */
+.docsify-charty .dataset.bar .data-container,
+.docsify-charty .dataset.bar-stack .data-container {
 	transform: rotate( 90deg );
 }
 
 
 
-
-
 /*
- * rating
+ * charty - rating
  */
-
 .docsify-charty .dataset.rating {
 	max-width: none;
 }
@@ -413,13 +393,6 @@
 
 
 
-
-
-
-
-
-
-
 /*
  * breakpoints
  */
@@ -435,5 +408,4 @@
 		margin: 2em 0;
 		max-width: 25em;
 	}
-
 }
