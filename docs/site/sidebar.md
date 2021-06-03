@@ -1,1 +1,1 @@
-<footer id="mb-footer"></footer>
+<!-- mb-sidebar -->

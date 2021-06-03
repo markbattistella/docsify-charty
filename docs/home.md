@@ -1,39 +1,72 @@
+<div align="center">
+
+# docsify-charty
+
+<small style="margin-bottom:2em;">by Mark Battistella</small>
+
+[![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD)
+[![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
+</div>
+
+---
+
+<!-- markdownlint-disable MD002 -->
 <!-- tabs:start -->
 
-#### **Home**
+## ** Home **
 
-[](README.md ':include')
+[Home](README.md ':include')
 
-#### **Pie**
+## ** Area **
 
-[](charty/pie.md ':include')
+[Area - single](charty/area-single.md ':include')
 
-#### **Donut**
+[Area - stacked](charty/area-stacked.md ':include')
 
-[](charty/doughnut.md ':include')
+## ** Radar **
 
-#### **Section**
+[Area - radar](charty/area-radar.md ':include')
 
-[](charty/section.md ':include')
+## ** Pie **
 
-#### **Column**
+[Circle - Pie](charty/circle-pie.md ':include')
 
-[](charty/column.md ':include')
+## ** Donut **
 
-#### **Bar**
+[Circle - Donut](charty/circle-donut.md ':include')
 
-[](charty/bar.md ':include')
+## ** Section **
 
-#### **Line**
+[Circle - Donut](charty/circle-section.md ':include')
 
-[](charty/line.md ':include')
+## ** Rings **
 
-#### **Plot**
+[Circle - Rings](charty/circle-rings.md ':include')
 
-[](charty/plot.md ':include')
+## ** Plot **
 
-#### **Rating**
+[Plot - scatter](charty/plot-scatter-point.md ':include')
 
-[](charty/rating.md ':include')
+[Plot - bubble](charty/plot-scatter-bubble.md ':include')
+
+## ** Line **
+
+[Line - single](charty/plot-line-single.md ':include')
+
+[Line - stacked](charty/plot-line-stacked.md ':include')
+
+## ** Bar **
+
+[Bar - horizontal - single](charty/bar-horizontal-single.md ':include')
+
+[Bar - vertical - single](charty/bar-vertical-single.md ':include')
+
+[Bar - horizontal - stacked](charty/bar-horizontal-stacked.md ':include')
+
+[Bar - vertical - stacked](charty/bar-vertical-stacked.md ':include')
+
+## ** Rating **
+
+[rating](charty/rating.md ':include')
 
 <!-- tabs:end -->

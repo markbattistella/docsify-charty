@@ -4,47 +4,48 @@
 
 # docsify-charty
 
+<small style="margin-bottom:2em;">by Mark Battistella</small>
+
 [![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD)
 [![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
 </div>
 
 ---
 
-> I wanted to create something that was powerful but also not too overbearing.<br><br>There are tonnes of charing libraries out there, and some are **way** more powerful but I wanted to try building my own.<br><br>My main goal was to have a format that was reusable, and easy to switch between a pie chart to a rating block to a bar graph - all without changing the main data.<br><br>There's some work still to be done, but I think at the moment it is functional enough for small use.
-
 ## Installation
 
 ### Update `index.html` file
 
-Assuming you have a working [docsify](https://docsify.js.org/) framework set up, it is easy to use the plugin.
-
 1. Add the following script and stylesheet to your `index.html` via either CDN or downloading it and using it locally:
 
+    **unpkg.com**
     ```html
-    <!-- unpkg.com -->
-    <script src="https://unpkg.com/@markbattistella/docsify-charty@latest"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@markbattistella/docsify-charty@1.0.4/dist/docsify-charty.min.css">
+    <script src="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.js"></script>
+    <link rel="stylesheet" href="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
+	```
 
-    <!-- jsDelivr -->
-    <script src="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
+	**jsDelivr.com**
+	```html
+    <script src="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
+	```
 
-    <!-- locally -->
+    **locally**
+	```html
     <script src="docsify-charty.min.js"></script>
     <link rel="stylesheet" href="docsify-charty.min.css">
     ```
 
-1. In docsify setup configure the plugin (see [configuration](#configuration) for setup):
+1. In docsify setup configure the plugin (see [configuration](#configuration) for setup). These are the global settings and affect all charts:
 
     ```js
-    <script>
     window.$docsify = {
       charty: {
         "theme": String,
-        "mode":  String
-      },
+        "mode":  String,
+		"debug": Boolean
+      }
     };
-    </script>
     ```
 
 ### npm install
@@ -57,88 +58,112 @@ npm i @markbattistella/docsify-charty
 
 ## Configuration
 
-There is only two (optional) main configurations:
+### Global settings
 
-?> **Note:** the `mode` is currently not active
+| Name    | Accepts   | Description                                        |
+|---------|-----------|----------------------------------------------------|
+| `theme` | `String`  | Set a global theme for chart colours - must be HEX |
+| `mode`  | `String`  | Dark or light theme - to compliment your design    |
+| `debug` | `Boolean` | Shop warning or error messages in the console      |
 
-| Name    | Setting                                                   |
-|---------|-----------------------------------------------------------|
-| `theme` | Set a global theme for the item colours - needs to be HEX |
-| `mode`  | Dark or light theme - to compliment your design           |
+### Per chart settings
+
+| Name              | Accepts       | Description                              |
+|-------------------|---------------|------------------------------------------|
+| `title`           | `String`      | The title of the chart, displayed at the top. Leave blank if you want to hide it |
+| `caption`         | `String`      | The sub-text of the chart, displayed under the title. Leave blank to hide it |
+| `type`            | `String`      | The type of charty you want to display   |
+| `options.theme`   | `String`      | Set an individual theme to this chart. It will override the global theme |
+| `options.legend`  | `Boolean`     | Show the legend. Default `true`          |
+| `options.labels`  | `Boolean`     | Show the chart labels. Default `true`    |
+| `options.numbers` | `Boolean`     | Show the chart numbers. Default `true`   |
+| `data.label`      | `String`      | Graphed data point label                 |
+| `data.value`      | `Int / Array` | Graphed value that puts it on the render |
+| `data.colour`     | `String`      | Override the global and theme with a specific colour |
 
 ### Markdown code
 
 ```json
 {
-  "title":  String,
-  "config": {
-    "type":    String,
-    "labels":  Bool,
-    "numbers": Bool,
-    "groups":  Int,
-    "color":   String
+  "title":   '',
+  "caption": '',
+  "type":    '',
+  "options": {
+    "theme":   '',
+	"legend":  '',
+    "labels":  '',
+    "numbers": ''
   },
   "data": [
-    { "label": String, "value": Int, "color": String }
+    {
+	  "label": '',
+	  "value": '',
+	  "colour": ''
+    }
   ]
 }
 ```
 
-| Option            | Required | Meaning                                      |
-|-------------------|----------|----------------------------------------------|
-| `title`           |          | This is the title of the chart / graph       |
-| `$config.type`    | Yes      | Type of charty graph: `bar / column / doughnut / donut / line / pie / plot / rating / section /sectional`                    |
-| `$config.labels`  |          | Show the data point labels or not            |
-| `$config.numbers` |          | Show the data point values or not            |
-| `$config.groups`  |          | If using `column` or `bar` you can have the graph space out the data every `n`. In a `rating` it is the max that the ratings are rated out of |
-| `$config.color`   |          | The global theme for all charty items - if no colours are manually set it will use this to make one                         |
-| `$data.label`     |          | Graph data point label                       |
-| `$data.value`     | Yes      | Graph value that puts it on the render       |
-| `$data.color`     |          | If you want to override the theme colour you can manually do it per data point |
-
-Not every option is available on every charty type, however the easiest way would be to look at the `docs/charty/` files :smile:
-
 ## Types of charts
 
-### Pie Chart
+### Circular
 
-#### With legend
+#### pie
 
-![](/docs/demo/01.jpg)
+![docsify-charty: pie](docs/demo/pie.jpg)
 
-#### Without Legend
+#### donut / doughnut
 
-![](/docs/demo/02.jpg)
+![docsify-charty: donut](docs/demo/donut.jpg)
 
-### Donut / Doughnut Chart
+#### section / sectional
 
-![](/docs/demo/03.jpg)
+![docsify-charty: section](docs/demo/section.jpg)
 
-### Sectional chart
+#### rings
 
-![](/docs/demo/04.jpg)
+![docsify-charty: rings](docs/demo/rings.jpg)
 
-### Column chart
+### Area
 
-![](/docs/demo/05.jpg)
+#### radar
 
-### Line graph
+![docsify-charty: radar](docs/demo/radar.jpg)
 
-### Normal state
+#### area
 
-![](/docs/demo/06.jpg)
+![docsify-charty: area](docs/demo/area.jpg)
 
-### Hover for details
+### Plot
 
-![](/docs/demo/07.jpg)
+#### scatter
 
-### Plot graph
+![docsify-charty: scatter](docs/demo/scatter.jpg)
 
-![](/docs/demo/08.jpg)
+#### bubble
 
-### Review / rating chart
+![docsify-charty: bubble](docs/demo/bubble.jpg)
 
-![](/docs/demo/09.jpg)
+#### line
+
+![docsify-charty: line](docs/demo/line.jpg)<br>
+![docsify-charty: line](docs/demo/line-stack.jpg)
+
+### Bar / Column
+
+### bar / bar-stack
+
+![docsify-charty: line](docs/demo/bar.jpg)<br>
+![docsify-charty: line](docs/demo/bar-stack.jpg)
+
+### column / column-stack
+
+![docsify-charty: line](docs/demo/column.jpg)<br>
+![docsify-charty: line](docs/demo/column-stack.jpg)
+
+### Rating
+
+![docsify-charty: line](docs/demo/rating.jpg)
 
 ## Contributing
 

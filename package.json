@@ -25,6 +25,19 @@
 		"doc": "docs"
 	},
 	"scripts": {
-		"launch": "docsify serve ./docs -p 3015 -o"
+		"launch": "docsify serve ./docs -o",
+		"babel": "npx babel docs/assets/docsify-charty.js -o dist/docsify-charty.js",
+		"uglify": "uglifyjs dist/docsify-charty.js --verbose -c -m -o dist/docsify-charty.min.js",
+		"minify": "npm run babel && npm run uglify"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.14.3",
+		"@babel/core": "^7.14.3",
+		"@babel/preset-env": "^7.14.4"
+	},
+	"babel": {
+		"presets": [
+			"@babel/env"
+		]
 	}
 }
