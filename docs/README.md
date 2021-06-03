@@ -41,7 +41,7 @@
 Or if you're using `npm` to manage your dependencies:
 
 ```sh
-npm i @markbattistella/docsify-charty
+npm i @markbattistellaify-charty
 ```
 
 ## Configuration
@@ -157,7 +157,7 @@ npm i @markbattistella/docsify-charty
 
 1. Clone the repo:
 
-    `git clone https://github.com/markbattistella/docsify-charty.git`
+    `git clone https://github.com/markbattistellaify-charty.git`
 
 1. Create your feature branch:
 

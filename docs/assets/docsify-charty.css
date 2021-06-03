@@ -1,393 +1,329 @@
-/*
- * docsify-charty.css v2.0.0 (https://markbattistella.github.io/docsify-charty/)
- * Copyright (c) 2021 Mark Battistella (@markbattistella)
- * Licensed under MIT
- */
+/*! (c) Mark Battistella | charty.css | @markbattistella */
 
 
-
-/*
- * core
- */
-.docsify-charty {
-
-	/* colours */
-	--charty-colour-focus:	#FDCB6E;
-	--charty-colour-dark:	#333;
-	--charty-colour-light:	#CCC;
-	--charty-colour-medium:	#888;
-
-	/* colours - themes */
-
-	/* sizes */
-	--charty-size-title:	0;
-	--charty-size-baseline: 16;
-	--charty-size-hole:		50;
-	--charty-size-radius:	0.3;
-
-	/* normal */
-	position:		relative;
-    display:		block;
-    margin:			0 auto;
-    padding:		0;
-    border:			0;
-	width:			100%;
-	font-size:		calc( var(--charty-size-baseline) * 1px );
-	line-height:	calc( var(--charty-size-baseline) * 1px * 1.5 );
-	color:			var(--charty-colour-text);
-
-	/* printing colour */
-	color-adjust: exact;
+:root {
+	--graph-size: 500;
+	--graph-node: 0.8em;
 }
 
-.docsify-charty,
-.docsify-charty:before,
-.docsify-charty:after,
-.docsify-charty *,
-.docsify-charty *:before,
-.docsify-charty *:after {
-	box-sizing: border-box;
-	vertical-align: middle;
+/*
+ * main chart
+ */
+.charty {
+	margin: 0 0 3em;
+}
+.charty svg {
+	max-height: 20em;
+	max-width: 20em;
+
+	height: 100%;
+	width: 100%;
+}
+.charty ul,
+.charty ol {
+	list-style: none; margin: 0; padding: 0;
 }
 
-.docsify-charty .container {
+
+
+
+/*
+ * column chart
+ * bar chart
+ */
+.charty[type="charty-column"] .data-set,
+.charty[type="charty-bar"]    .data-set {
+	display: grid;
+	margin-top: 2em;
+	transition: all 400ms;
+}
+
+.charty[type="charty-column"] .data-set {
+	height: calc( var(--content-max-width) / 2 );
+	grid-template-columns: repeat(auto, 1fr);
+	grid-template-rows: repeat( 100, 1fr );
+	column-gap: 1px;
+}
+.charty[type="charty-bar"] .data-set {
+	height: var(--content-max-width);
+	grid-template-rows: repeat(auto, 1fr);
+	grid-template-columns: repeat( 100, 1fr );
+	row-gap: 1px;
+}
+
+.charty[type="charty-column"] .data-set [class="data"],
+.charty[type="charty-bar"]    .data-set [class="data"] {
+	transition: all 0.6s ease;
+	background-color: #888;
+	position: relative;
+}
+.charty[type="charty-column"] .data-set [class="data"] {
+	border-radius: 0.5em 0.5em 0 0;
+	grid-row-start: 1;
+	grid-row-end: 101;
+}
+.charty[type="charty-bar"] .data-set [class="data"] {
+	border-radius: 0 0.5em 0.5em 0;
+	grid-column-start: 101;
+	grid-column-end: 1;
+}
+
+.charty[type="charty-column"] [class="data"]:last-child {
+	margin-right: 0;
+}
+.charty[type="charty-bar"] [class="data"]:last-child {
+	margin-bottom: 0;
+}
+
+.charty[type="charty-column"] [class="data"]:before,
+.charty[type="charty-bar"] [class="data"]:before,
+.charty[type="charty-column"] [class="data"]:after,
+.charty[type="charty-bar"] [class="data"]:after {
+	color: #000;
+	font-size: 0.7em;
+	position: absolute;
+	text-align: center;
+	transition: all 400ms;
+}
+
+.charty[type="charty-column"] [class="data"]:before,
+.charty[type="charty-column"] [class="data"]:after {
+	width: 100%;
+}
+
+.charty[type="charty-bar"] [class="data"]:before,
+.charty[type="charty-bar"] [class="data"]:after {
+	top: 50%;
+	transform: rotate(90deg) translate(-50%);
+}
+
+.charty[type="charty-column"] [class="data"]:before,
+.charty[type="charty-bar"]    [class="data"]:before {
+	content: attr(data-label);
+}
+.charty[type="charty-column"] [class="data"]:before {
+	bottom: -2em;
+}
+.charty[type="charty-bar"] [class="data"]:before {
+   left: -2em;
+}
+
+.charty[type^="charty-column"] [class*="data"]:after,
+.charty[type^="charty-bar"]    [class*="data"]:after {
+	content: attr(data-number);
+}
+.charty[type="charty-column"] [class="data"]:after {
+	top: -1.8em;
+}
+.charty[type="charty-bar"] [class="data"]:after {
+	right: -1.8em;
+}
+
+.charty[type="charty-column"] [class="data"]:hover:after {
+	top: -2.5em;
+}
+.charty[type="charty-bar"] [class="data"]:hover:after {
+	right: -2.5em;
+}
+
+
+
+
+
+/*
+ * pie chart - legend
+ * donut chart - legend
+ * section chart - legend
+ */
+.charty[type*="charty-"] .charty-columns {
 	display: flex;
 	flex-direction: row;
-	margin-bottom: 4em !important;
 }
 
-.docsify-charty .container > * {
+.charty[type*="charty-"] .charty-rows {
 	align-self: center;
+	margin: 2em;
 }
 
-.docsify-charty .dataset {
-	max-width: 25em;
-	width: 100%;
-}
-
-
-
-/*
- * svg
- */
-
-.docsify-charty .dataset svg {
-	overflow: visible;
-	max-width: 25em;
-	max-height: 25em;
-}
-
-/* all svg items */
-.docsify-charty .dataset svg * {
-	transform-origin: center center;
-}
-
-.docsify-charty .dataset polyline,
-.docsify-charty .dataset line,
-.docsify-charty .dataset.radar .data-header circle {
-	fill: none;
-	stroke: var(--charty-colour-light);
-}
-
-.docsify-charty text {
-	transition: all 600ms;
-	alignment-baseline: middle;
-	text-anchor: middle;
-	font-size: 15%;
-	fill: var(--charty-colour-light);
-}
-
-.docsify-charty .data-header text {
-	fill: var(--charty-colour-medium);
-}
-
-.docsify-charty .data-item text {
-	opacity: 0;
-}
-
-.docsify-charty .dataset.radar text {
-	font-size: 35%;
-}
-
-
-
-/*
- * focus / highlighting
- */
-.docsify-charty .focus:after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	background: var(--charty-colour-focus);
-	border-radius: calc( var(--charty-size-radius) * 1em );
-	opacity: 0.5;
-	top:	0;
-	bottom:	0;
-	left:	0;
-	right:	0;
-}
-
-
-
-/*
- * header
- */
-.docsify-charty header {
-	margin-bottom: 1.3em;
-}
-
-.docsify-charty h3 {
-	--charty-size-title: 1.35;
-	font-size: calc( var(--charty-size-title) * 1em);
-	font-weight: bold;
-	text-align: left;
-}
-
-.docsify-charty figcaption {
-	font-size: 0.9em;
-	color: var(--charty-colour-medium);
-}
-
-
-
-/*
- * legend
- */
-.docsify-charty.legend fieldset {
-	order: 2;
-	margin-left: auto;
+.charty[type*="charty-"] fieldset {
+	margin-left: 2em;
 	border-width: 5px 0 0 0;
-	border-color: var(--charty-colour-light);
+	border-color: #CCC;
 	border-style: solid;
-	font-size: 0.9em;
-	max-width: 30%;
+	font-size: 14px;
 	width: 100%;
+	max-width: calc( var(--content-max-width, 50em) / 3 );
 }
-
-.docsify-charty.legend fieldset legend {
-	font-size: 1em;
+.charty[type*="charty-"] fieldset legend {
+	font-size: 1rem;
 	font-family: sans-serif;
 	font-weight: bold;
 	padding: 0 1em;
 	margin: 0 0 0.5em -1em;
 }
-
-.docsify-charty.legend fieldset label {
+.charty[type*="charty-"] fieldset label {
 	display: block;
-	text-indent: -2em;
-	margin: 0.25em 0 0 2em;
+	text-indent: -2.5em;
+	margin: 0.5em 0 0 2.5em;
 	line-height: 1.5em;
-	border-radius: 3px;
-	padding: 2px 5px;
 }
 
-.docsify-charty.legend fieldset label span {
+.charty[type*="charty-"] fieldset label span {
 	height: 1em;
 	width: 1em;
-	margin-right: 1em;
-	border-radius: 0.2em;
+	border-radius: 0.25em;
 	display: inline-block;
+	vertical-align: middle;
+	margin-right: 1em;
 }
 
-.docsify-charty.legend fieldset label:hover {
-	background: var(--charty-colour-light);
-}
+
 
 
 
 /*
- * hover events
+ * line chart
+ * plot chart
  */
-.docsify-charty.legend .dataset .data-item {
-	opacity: 0.85;
-	transition: opacity 300ms;
-}
-
-.docsify-charty.legend.hover .dataset .data-item {
-	opacity: 0.1;
-}
-
-/* hover: heading */
-.docsify-charty header:hover ~ .container .data-text text,
-.docsify-charty header:hover ~ .container .data-item:after,
-
-/* hover: label */
-.docsify-charty .dataset .data-item.active .data-text text,
-.docsify-charty.legend.hover .dataset .data-item.active,
-
-/* hover: data-item */
-.docsify-charty .data-item:hover text,
-
-/* hover: data-text */
-.docsify-charty .data-text text:hover,
-.docsify-charty .data-text text.focus,
-.docsify-charty .dataset.bar .data-item:hover:after {
-	opacity: 1;
-}
-
-
-
-/*
- * axes
- */
-.docsify-charty.axes .dataset {
-	padding: 0;
-	margin: 0;
-	border-width: 0 0 3px 3px;
+.charty[type="charty-line"] figure,
+.charty[type="charty-plot"] figure {
+	width:  calc( var(--graph-size) * 1px );
+	height: calc( var(--graph-size) * 1px );
+	border-width: 0 0 5px 5px;
 	border-style: solid;
-	border-color: var(--charty-colour-dark, #333);
+	border-color: var(--mb-colour-gray);
+	display: inline-block;
 	position: relative;
 }
 
-.docsify-charty.axes .dataset[axes-horizontal] {
-	margin-bottom: 2em;
-}
-.docsify-charty.axes .dataset[axes-vertical] {
-	margin-left: 3.5em;
+.charty[type="charty-line"] ul,
+.charty[type="charty-plot"] ul {
+	height: 100%;
+	width: 100%;
 }
 
-.docsify-charty.axes .dataset:before,
-.docsify-charty.axes .dataset:after  {
+.charty[type="charty-line"] .data-point,
+.charty[type="charty-plot"] .data-point {
+	position: absolute;
+	z-index: 1;
+	bottom: calc( (1px * var(--y)) - ( var(--graph-node) / 2) );
+	left:   calc( (1px * var(--x)) - ( var(--graph-node) / 2) );
+	background: var(--mb-colour-blue);
+	border-radius: 50%;
+	width:  var(--graph-node);
+	height: var(--graph-node);
+	transition: all 400ms;
+}
+
+.charty[type="charty-line"] .data-point:before,
+.charty[type="charty-plot"] .data-point:before,
+.charty[type="charty-line"] .data-point:after,
+.charty[type="charty-plot"] .data-point:after {
 	content: '';
 	position: absolute;
-	z-index: -1;
-	left: 0;
-	width: 100%;
-	font-size: 0.7em;
+	left: 50%;
+	transform: translate(-50%);
+	font-size: 70%;
+	background: #FFF;
+	opacity: 0;
+	transition: all 400ms;
+}
+
+.charty[type="charty-line"] .data-point:before,
+.charty[type="charty-plot"] .data-point:before {
+	content: attr(data-number);
+	top: -2em;
+}
+
+.charty[type="charty-line"] .data-point:after,
+.charty[type="charty-plot"] .data-point:after {
+	content: attr(data-label);
+	top: -3.5em;
 	font-weight: bold;
-	text-align: center;
-	letter-spacing: 1px;
-	color: var(--charty-colour-dark, #333);
 }
 
-.docsify-charty.axes .dataset:before {
-	content: attr(axes-horizontal);
-	bottom: -5.5em;
+.charty[type="charty-line"] figure:hover .data-point:before,
+.charty[type="charty-plot"] figure:hover .data-point:before,
+.charty[type="charty-line"] figure:hover .data-point:after,
+.charty[type="charty-plot"] figure:hover .data-point:after {
+	opacity: 1;
 }
 
-.docsify-charty.axes .dataset:after {
-	content: attr(axes-vertical);
-	transform-origin: top right;
-	left: calc( -100% - 5.5em );
-	transform: rotate(-90deg);
+.charty[type="charty-line"] .data-point:hover,
+.charty[type="charty-plot"] .data-point:hover {
+	background: var(--mb-colour-red);
 }
 
-
-
-/*
- * charty - radar
- */
-.docsify-charty .dataset.radar svg {
-	transform: scale(0.5) translate(50%, 50%);
-}
-
-.docsify-charty .dataset.radar .data-header circle:nth-child( even ) {
-	opacity: 0.3;
-}
-
-.docsify-charty .dataset.radar .data-container,
-.docsify-charty .dataset.radar .data-header line,
-.docsify-charty .dataset.radar .data-header .data-text {
-	transform-origin: top left;
-}
-
-.docsify-charty .dataset.radar svg .data-header line {
+.charty[type="charty-line"] .segment,
+.charty[type="charty-plot"] .segment {
+	background-color: var(--mb-colour-light, #CCC);
+	height: 3px;
+	bottom: calc( var(--y) * 1px );
+	left: calc( var(--x) * 1px );
+	position: absolute;
 	transform: rotate( calc( var(--angle) * 1deg ) );
+	transform-origin: left bottom;
+	width: calc( var(--hypotenuse) * 1px );
 }
 
-.docsify-charty .dataset.radar .data-header text {
-	font-weight: bold;
-	transform: rotate( calc( var(--angle) * 1deg ) );
-}
+
+
+
+
+
+
 
 
 
 /*
- * charty - pie / donut / section / ring
- */
-.docsify-charty .dataset.pie	 .data-item,
-.docsify-charty .dataset.donut	 .data-item,
-.docsify-charty .dataset.section .data-item,
-.docsify-charty .dataset.ring	 .data-item {
-	transform: rotate( -90deg );
-}
-
-.docsify-charty .dataset.donut #donut-hole circle {
-	fill: black;
-	r: calc( var(--charty-size-hole, 50) * 1% / 2 );
-}
-
-.docsify-charty .dataset.ring .data-item circle.ring-bg {
-	fill: none;
-	stroke: var(--charty-colour-light);
-}
-
-
-
-/*
- * charty - bar / column
- */
-.docsify-charty .dataset.bar .data-container,
-.docsify-charty .dataset.bar-stack .data-container {
-	transform: rotate( 90deg );
-}
-
-
-
-/*
- * charty - rating
- */
-.docsify-charty .dataset.rating {
-	max-width: none;
-}
-
-.docsify-charty .dataset.rating small {
-	display: block;
-	text-align: right;
-}
-
-.docsify-charty .dataset.rating .data-item {
+* pie chart - section chart
+*/
+.charty[type="charty-rating"] .rating-row {
 	display: flex;
+	font-size: 16px;
 	font-weight: bold;
 	color: #FFF;
 	text-align: center;
-	line-height: 2.75;
-	margin-top: 1px;
+	line-height: 3em;
 	overflow: hidden;
 }
-
-.docsify-charty .dataset.rating .data-item:nth-of-type(1) {
-	border-radius: 2px 2px 0 0;
+.charty[type="charty-rating"] figcaption {
+	text-align: right;
 }
 
-.docsify-charty .dataset.rating .data-item:nth-last-of-type(1) {
-	border-radius: 0 0 2px 2px;
+.charty[type="charty-rating"] .rating-row:nth-of-type(1) {
+	border-radius: 5px 5px 0 0;
 }
 
-.docsify-charty .dataset.rating .data-item > div {
-	margin-right: 1px;
+.charty[type="charty-rating"] .rating-row:nth-last-of-type(1) {
+	border-radius: 0 0 5px 5px;
+}
+
+.charty[type="charty-rating"] .rating-row > div {
+	margin: 1px 1px 0 0;
 	width: 100%;
 }
 
-.docsify-charty .dataset.rating .data-item .rating-label {
-	max-width: 10em;
-	background: var(--charty-colour-dark);
+.charty[type="charty-rating"] .rating-label {
+	max-width: 8em;
+	background: var(--mb-colour-gray);
 }
 
-.docsify-charty .dataset.rating .data-item .rating-value {
+.charty[type="charty-rating"] .rating-value {
 	max-width: 4em;
-	background: var(--charty-colour-medium);
+	background: var(--mb-colour-gray2);
 }
 
-.docsify-charty .dataset.rating .rating-bar-container {
-	background: var(--charty-colour-light);
+.charty[type="charty-rating"] .rating-bar-container {
+	width: 100%;
+	background: var(--mb-colour-light);
 }
 
-.docsify-charty .dataset.rating .rating-bar-colour {
+.charty[type="charty-rating"] .rating-bar-color {
 	width: 0%;
-	height: 100%;
-	background: var(--charty-colour-light);
+	background: var(--mb-colour-green);
 }
+
 
 
 
@@ -398,14 +334,33 @@
  */
 @media( max-width: 800px ) {
 
-	.docsify-charty .container {
-		flex-direction: column;
+	.charty[type*="charty-"] .charty-columns {
+		display: block;
 	}
-	.docsify-charty .container > * {
-		align-self: flex-start;
+	.charty[type*="charty-"] .charty-rows {
+		margin: 2em 0 0;
 	}
-	.docsify-charty.legend fieldset {
-		margin: 2em 0;
-		max-width: 25em;
+	.charty[type*="charty-"] fieldset {
+		border-bottom: 1px solid #EEE;
+		padding-bottom: 2em;
+	}
+
+}
+
+@media( max-width: 320px ) {
+	:root {
+		--graph-size: 180;
+		--graph-node: 0.5em;
+	}
+	.charty[type="charty-line"] .data-point,
+	.charty[type="charty-plot"] .data-point {
+		bottom: calc( ((1px * var(--y)) - ( var(--graph-node) / 2)) * (180/500) );
+		left:   calc( ((1px * var(--x)) - ( var(--graph-node) / 2)) * (180/500) );
+	}
+	.charty[type="charty-line"] .segment,
+	.charty[type="charty-plot"] .segment {
+		bottom: calc( (var(--y) * 1px) * (180/500) );
+		left:   calc( (var(--x) * 1px) * (180/500) );
+		width:  calc( (var(--hypotenuse) * 1px) * (180/500) );
 	}
 }
