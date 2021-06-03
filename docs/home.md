@@ -6,6 +6,7 @@
 
 [![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD)
 [![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
+
 </div>
 
 ---
@@ -20,6 +21,8 @@
 ## ** Area **
 
 [Area - single](charty/area-single.md ':include')
+
+---
 
 [Area - stacked](charty/area-stacked.md ':include')
 
@@ -53,15 +56,23 @@
 
 [Line - single](charty/plot-line-single.md ':include')
 
+---
+
 [Line - stacked](charty/plot-line-stacked.md ':include')
 
 ## ** Bar **
 
 [Bar - horizontal - single](charty/bar-horizontal-single.md ':include')
 
+---
+
 [Bar - vertical - single](charty/bar-vertical-single.md ':include')
 
+---
+
 [Bar - horizontal - stacked](charty/bar-horizontal-stacked.md ':include')
+
+---
 
 [Bar - vertical - stacked](charty/bar-vertical-stacked.md ':include')
 
