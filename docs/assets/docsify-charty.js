@@ -1,4 +1,8 @@
-/*! docsify-charty.js v2.0.0 | (c) Mark Battistella */
+/*
+ * docsify-charty.js v2.0.1 (https://markbattistella.github.io/docsify-charty/)
+ * Copyright (c) 2021 Mark Battistella (@markbattistella)
+ * Licensed under MIT
+ */
 
 //
 // MARK: - safety first
@@ -30,7 +34,8 @@ function getChartyOptions( chartyOptions ) {
 	// build the array
 	const outputArray = [
 		chartyTheme,	// colour to use for shades
-		chartyMode		// light or dark mode
+		chartyMode,		// light or dark mode
+		chartyDebug		// show debug messages
 	];
 
 	// output
@@ -46,7 +51,7 @@ function getChartyOptions( chartyOptions ) {
 //
 const chartyOptions = {
 	theme:	'',
-	mode:	'',
+	mode:	'light',
 	debug:	0
 };
 
@@ -90,6 +95,7 @@ function charty( hook, vm ) {
 				'column-stacked'
 			];
 
+console.log( configDebug );
 	//
 	// MARK: - custom local functions
 	//
@@ -448,6 +454,7 @@ function charty( hook, vm ) {
 				// add the classes
 				// -- main class
 				replacement.classList.add( 'docsify-charty' );
+				replacement.classList.add( `${ configMode }` );
 
 				// -- axes class
 				if( chartyJSONOptionsLabel &&

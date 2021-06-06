@@ -1,5 +1,5 @@
 /*
- * docsify-charty.css v2.0.0 (https://markbattistella.github.io/docsify-charty/)
+ * docsify-charty.css v2.0.1 (https://markbattistella.github.io/docsify-charty/)
  * Copyright (c) 2021 Mark Battistella (@markbattistella)
  * Licensed under MIT
  */
@@ -38,6 +38,14 @@
 
 	/* printing colour */
 	color-adjust: exact;
+}
+
+/* mode: dark */
+.docsify-charty.dark {
+	--charty-colour-focus:	#023491;
+	--charty-colour-dark:	#CCC;
+	--charty-colour-light:	#333;
+	--charty-colour-medium:	#777;
 }
 
 .docsify-charty,
@@ -407,5 +415,11 @@
 	.docsify-charty.legend fieldset {
 		margin: 2em 0;
 		max-width: 25em;
+	}
+}
+
+@media( max-width: 480px ) {
+	.docsify-charty.axes .dataset[axes-vertical] {
+		margin-left: 1em;
 	}
 }

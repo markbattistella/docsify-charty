@@ -1,6 +1,6 @@
 {
 	"name": "@markbattistella/docsify-charty",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Add charts and graphs to your docsify website",
 	"main": "dist/docsify-charty.min.js",
 	"repository": {

@@ -1,4 +1,8 @@
-/*! docsify-charty.js v2.0.0 | (c) Mark Battistella */
+/*
+ * docsify-charty.js v2.0.1 (https://markbattistella.github.io/docsify-charty/)
+ * Copyright (c) 2021 Mark Battistella (@markbattistella)
+ * Licensed under MIT
+ */
 //
 // MARK: - safety first
 //
@@ -38,7 +42,8 @@ function getChartyOptions(chartyOptions) {
       chartyDebug = chartyOptions.debug === true ? true : false; // build the array
 
   var outputArray = [chartyTheme, // colour to use for shades
-  chartyMode // light or dark mode
+  chartyMode, // light or dark mode
+  chartyDebug // show debug messages
   ]; // output
 
   return outputArray;
@@ -49,7 +54,7 @@ function getChartyOptions(chartyOptions) {
 
 var chartyOptions = {
   theme: '',
-  mode: '',
+  mode: 'light',
   debug: 0
 }; //
 // MARK: - main function
@@ -62,7 +67,8 @@ function charty(hook, vm) {
   configTheme = chartyOptionsArray[0],
       configMode = chartyOptionsArray[1],
       configDebug = chartyOptionsArray[2],
-      acceptedCharts = ['radar', 'area', 'donut', 'doughnut', 'pie', 'section', 'sectional', 'rings', 'line', 'plot', 'scatter', 'bubble', 'rating', 'review', 'bar', 'column', 'bar-stack', 'bar-stacked', 'column-stack', 'column-stacked']; //
+      acceptedCharts = ['radar', 'area', 'donut', 'doughnut', 'pie', 'section', 'sectional', 'rings', 'line', 'plot', 'scatter', 'bubble', 'rating', 'review', 'bar', 'column', 'bar-stack', 'bar-stacked', 'column-stack', 'column-stacked'];
+  console.log(configDebug); //
   // MARK: - custom local functions
   //
   // function: find the arc co-ordinates
@@ -318,7 +324,8 @@ function charty(hook, vm) {
       // -- main class
 
 
-      replacement.classList.add('docsify-charty'); // -- axes class
+      replacement.classList.add('docsify-charty');
+      replacement.classList.add("".concat(configMode)); // -- axes class
 
       if (chartyJSONOptionsLabel && ['area', 'plot', 'bubble', 'line', 'bar', 'column', 'bar-stack', 'column-stack'].includes(chartyType)) {
         replacement.classList.add('axes');
