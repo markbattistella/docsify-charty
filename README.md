@@ -20,16 +20,16 @@
     ```html
     <script src="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.js"></script>
     <link rel="stylesheet" href="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
-	```
+    ```
 
-	**jsDelivr.com**
-	```html
+    **jsDelivr.com**
+    ```html
     <script src="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
-	```
+    ```
 
     **locally**
-	```html
+    ```html
     <script src="docsify-charty.min.js"></script>
     <link rel="stylesheet" href="docsify-charty.min.css">
     ```
@@ -41,7 +41,7 @@
       charty: {
         "theme": String,
         "mode":  String,
-		"debug": Boolean
+	    "debug": Boolean
       }
     };
     ```
@@ -88,15 +88,15 @@ npm i @markbattistella/docsify-charty
   "type":    '',
   "options": {
     "theme":   '',
-	"legend":  '',
+    "legend":  '',
     "labels":  '',
     "numbers": ''
   },
   "data": [
     {
-	  "label": '',
-	  "value": '',
-	  "colour": ''
+      "label": '',
+      "value": '',
+      "colour": ''
     }
   ]
 }
