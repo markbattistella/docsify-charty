@@ -60,11 +60,11 @@ npm i @markbattistella/docsify-charty
 
 > Example: [index.html](https://github.com/markbattistella/docsify-charty-docs/blob/38573bff480009d5bbe7cdbbab12fe0474fa7407/index.html#L37-L40)
 
-| Name    | Accepts   | Description                                        |
-|---------|-----------|----------------------------------------------------|
-| `theme` | `String`  | Set a global theme for chart colours - must be HEX |
-| `mode`  | `String`  | Dark or light theme - to compliment your design    |
-| `debug` | `Boolean` | Shop warning or error messages in the console      |
+| Name    | Type      | Example   |  Description                              |
+|---------|-----------|-----------|-------------------------------------------|
+| `theme` | `String`  | "#EE5599" | Global theme for chart colours in HEX     |
+| `mode`  | `String`  | "light"   | Accepts "dark" or "light"                 |
+| `debug` | `Boolean` | false     | Console logs if charts aren't loading     |
 
 ### Per chart settings
 
