@@ -36,15 +36,15 @@
 
 1. In docsify setup configure the plugin (see [configuration](#configuration) for setup). These are the global settings and affect all charts:
 
-    ```js
-    window.$docsify = {
-      charty: {
-        "theme": String,
-        "mode":  String,
-	    "debug": Boolean
-      }
-    };
-    ```
+ ```js
+ window.$docsify = {
+   charty: {
+     "theme": String,
+     "mode":  String,
+     "debug": Boolean
+   }
+ };
+ ```
 
 ### npm install
 
@@ -57,6 +57,8 @@ npm i @markbattistella/docsify-charty
 ## Configuration
 
 ### Global settings
+
+> Example: [index.html](https://github.com/markbattistella/docsify-charty-docs/blob/38573bff480009d5bbe7cdbbab12fe0474fa7407/index.html#L37-L40)
 
 | Name    | Accepts   | Description                                        |
 |---------|-----------|----------------------------------------------------|
