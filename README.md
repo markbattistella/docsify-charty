@@ -110,60 +110,60 @@ npm i @markbattistella/docsify-charty
 
 #### pie
 
-![docsify-charty: pie](docs/demo/pie.jpg)
+![docsify-charty: pie](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/pie.jpg)
 
 #### donut / doughnut
 
-![docsify-charty: donut](docs/demo/donut.jpg)
+![docsify-charty: donut](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/donut.jpg)
 
 #### section / sectional
 
-![docsify-charty: section](docs/demo/section.jpg)
+![docsify-charty: section](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/section.jpg)
 
 #### rings
 
-![docsify-charty: rings](docs/demo/rings.jpg)
+![docsify-charty: rings](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/rings.jpg)
 
 ### Area
 
 #### radar
 
-![docsify-charty: radar](docs/demo/radar.jpg)
+![docsify-charty: radar](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/radar.jpg)
 
 #### area
 
-![docsify-charty: area](docs/demo/area.jpg)
+![docsify-charty: area](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/area.jpg)
 
 ### Plot
 
 #### scatter
 
-![docsify-charty: scatter](docs/demo/scatter.jpg)
+![docsify-charty: scatter](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/scatter.jpg)
 
 #### bubble
 
-![docsify-charty: bubble](docs/demo/bubble.jpg)
+![docsify-charty: bubble](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/bubble.jpg)
 
 #### line
 
-![docsify-charty: line](docs/demo/line.jpg)<br>
-![docsify-charty: line](docs/demo/line-stack.jpg)
+![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/line.jpg)<br>
+![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/line-stack.jpg)
 
 ### Bar / Column
 
 ### bar / bar-stack
 
-![docsify-charty: line](docs/demo/bar.jpg)<br>
-![docsify-charty: line](docs/demo/bar-stack.jpg)
+![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/bar.jpg)<br>
+![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/bar-stack.jpg)
 
 ### column / column-stack
 
-![docsify-charty: line](docs/demo/column.jpg)<br>
-![docsify-charty: line](docs/demo/column-stack.jpg)
+![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/column.jpg)<br>
+![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/column-stack.jpg)
 
 ### Rating
 
-![docsify-charty: line](docs/demo/rating.jpg)
+![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty-docs/main/demo/rating.jpg)
 
 ## Contributing
 
