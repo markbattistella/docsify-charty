@@ -83,7 +83,8 @@ npm i @markbattistella/docsify-charty
 
 ### Markdown code
 
-```json
+```js
+```charty
 {
   "title":   '',
   "caption": '',
@@ -102,6 +103,8 @@ npm i @markbattistella/docsify-charty
     }
   ]
 }
+// close the code block
+// can't show it here 
 ```
 
 ## Types of charts
