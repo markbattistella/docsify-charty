@@ -104,7 +104,7 @@ npm i @markbattistella/docsify-charty
   ]
 }
 // close the code block
-// can't show it here 
+// can't show it here
 ```
 
 ## Types of charts
