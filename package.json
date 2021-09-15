@@ -22,7 +22,6 @@
 		"line graph"
 	],
 	"scripts": {
-		"launch": "docsify serve ./docs -o",
 		"update": "ncu -u && npm update && npm install",
 		"babel": "npx babel docs/assets/docsify-charty.js -o dist/docsify-charty.js",
 		"uglify": "uglifyjs dist/docsify-charty.js --verbose -c -m -o dist/docsify-charty.min.js",
