@@ -4,8 +4,10 @@
 
 <small style="margin-bottom:2em;">by Mark Battistella</small>
 
-[![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD)
-[![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
+[![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD) [![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
+
+:sparkles: [![](https://img.shields.io/badge/demo-@markbattistella/docsify--charty-1E5749?style=for-the-badge)](https://markbattistella.github.io/docsify-charty-docs/) :sparkles:
+
 </div>
 
 ---
