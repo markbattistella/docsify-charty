@@ -1,5 +1,5 @@
 /*
- * docsify-charty.css v2.0.1 (https://markbattistella.github.io/docsify-charty/)
+ * docsify-charty.css v2.0.2 (https://markbattistella.github.io/docsify-charty/)
  * Copyright (c) 2021 Mark Battistella (@markbattistella)
  * Licensed under MIT
  */
@@ -287,6 +287,10 @@
  */
 .docsify-charty .dataset.radar svg {
 	transform: scale(0.5) translate(50%, 50%);
+}
+
+.docsify-charty .dataset.radar svg * {
+    transform-origin: 0 0;
 }
 
 .docsify-charty .dataset.radar .data-header circle:nth-child( even ) {

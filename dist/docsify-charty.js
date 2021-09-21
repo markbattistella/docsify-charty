@@ -1,5 +1,5 @@
 /*
- * docsify-charty.js v2.0.1 (https://markbattistella.github.io/docsify-charty/)
+ * docsify-charty.js v2.0.2 (https://markbattistella.github.io/docsify-charty/)
  * Copyright (c) 2021 Mark Battistella (@markbattistella)
  * Licensed under MIT
  */
