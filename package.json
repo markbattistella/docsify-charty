@@ -1,6 +1,6 @@
 {
 	"name": "@markbattistella/docsify-charty",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Add charts and graphs to your docsify website",
 	"main": "dist/docsify-charty.min.js",
 	"repository": {
@@ -33,6 +33,8 @@
 		"@babel/preset-env": "^7.15.6"
 	},
 	"babel": {
-		"presets": [ "@babel/env" ]
+		"presets": [
+			"@babel/env"
+		]
 	}
 }
