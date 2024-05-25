@@ -1,4 +1,7 @@
+.vscode
+.markdownlint.json
 .DS_Store
-.markdownlintrc
+*babel.js
+*.min.js
+.gitattributes
 node_modules
-.browserslistrc

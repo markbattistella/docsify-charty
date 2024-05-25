@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>docsify: Charty</title>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="Auto numbering plugin for Docsify.js">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	<!-- theme: simple -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+	<link rel="stylesheet" href="site/style.min.css">
+
+</head>
+
+<body>
+
+	<div id="app"></div>
+
+	<script>
+	window.$docsify = {
+		name:				'docsify-charty',
+		repo:				'https://github.com/markbattistella/docsify-charty',
+		homepage:			'home.md',
+		auto2top:			true,
+		notFoundPage:		'site/404.md',
+		relativePath:		true,
+		coverpage:			'site/cover.md',
+		loadNavbar:			'site/nav.md',
+		loadSidebar:		'site/sidebar.md',
+		hideSidebar:		true,
+		themeColor:			'var(--mb-colour-pink)',
+		tabs:				{ persist: true, theme: 'material' },
+
+		charty: {
+			"theme": "#EE5599",
+			"mode":  "light"
+		}
+	}
+	</script>
+
+	<!-- docsify.js -->
+	<script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+
+	<!-- local: docsify-charty -->
+	<script src="https://unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
+
+	<!-- docsify: tabs -->
+	<script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
-<div align="center">
+<!-- markdownlint-disable -->
+<div align="center" class="gh">
 
 # docsify-charty
 
@@ -19,18 +20,21 @@
 1. Add the following script and stylesheet to your `index.html` via either CDN or downloading it and using it locally:
 
     **unpkg.com**
+
     ```html
     <script src="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.js"></script>
     <link rel="stylesheet" href="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
     ```
 
     **jsDelivr.com**
+
     ```html
     <script src="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
     ```
 
     **locally**
+
     ```html
     <script src="docsify-charty.min.js"></script>
     <link rel="stylesheet" href="docsify-charty.min.css">
