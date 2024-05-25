@@ -1,9 +1,7 @@
-# ignore these please
-.git
+.vscode
+.markdownlint.json
 .github
-demo
-docs
+.gitattributes
 .DS_Store
-.markdownlintrc
-docs/docsify-charty.js
-.markdownlintrc
+*babel.js
+docs
