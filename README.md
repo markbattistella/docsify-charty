@@ -1,70 +1,58 @@
-<!-- markdownlint-disable -->
 <div align="center" class="gh">
 
-# docsify-charty
-
-<small style="margin-bottom:2em;">by Mark Battistella</small>
-
-[![](https://img.shields.io/badge/%20-@markbattistella-blue?logo=paypal&style=for-the-badge)](https://www.paypal.me/markbattistella/6AUD) [![](https://img.shields.io/badge/%20-buymeacoffee-black?logo=buy-me-a-coffee&style=for-the-badge)](https://www.buymeacoffee.com/markbattistella)
-
-:sparkles: [![](https://img.shields.io/badge/demo-@markbattistella/docsify--charty-1E5749?style=for-the-badge)](https://markbattistella.github.io/docsify-charty/) :sparkles:
+# docsify.js charty
 
 </div>
 
----
+This plugin enhances your Docsify documentation by adding SVG charts to your website. It allows you to add in multiple types of charts, including pie, doughnut, sectional, radar, area, scatter, line, and bar types. By utilising this plugin, you can easily show your data in a beautiful interface.
 
 ## Installation
 
 ### Update `index.html` file
 
+Assuming you have a working [docsify](https://docsify.js.org/) framework set up, it is easy to use the plugin.
+
 1. Add the following script and stylesheet to your `index.html` via either CDN or downloading it and using it locally:
 
-    **unpkg.com**
-
     ```html
-    <script src="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.js"></script>
-    <link rel="stylesheet" href="//unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
-    ```
+    <!-- unpkg.com -->
+    <script src="https://unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
 
-    **jsDelivr.com**
+    <!-- jsDelivr -->
+    <script src="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
 
-    ```html
-    <script src="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
-    ```
-
-    **locally**
-
-    ```html
+    <!-- locally -->
     <script src="docsify-charty.min.js"></script>
     <link rel="stylesheet" href="docsify-charty.min.css">
     ```
 
-1. In docsify setup configure the plugin (see [configuration](#configuration) for setup). These are the global settings and affect all charts:
+1. In docsify setup, configure the plugin:
 
- ```js
- window.$docsify = {
-   charty: {
-     "theme": String,
-     "mode":  String,
-     "debug": Boolean
-   }
- };
- ```
+    ```js
+    <script>
+    window.$docsify = {
+      charty: {
 
-### npm install
+        // Global theme for chart colours in HEX
+        theme: '.',
 
-Or if you're using `npm` to manage your dependencies:
+        // Accepts "dark" or "light"
+        mode: "light",
 
-```sh
-npm i @markbattistella/docsify-charty
-```
+        // Boolean to enable or disable debug messages
+        debug: false
+      }
+   };
+   </script>
+   ```
 
 ## Configuration
 
-### Global settings
+There are several options available for the docsify-charty plugin:
 
-> Example: [index.html](https://github.com/markbattistella/docsify-charty/blob/38573bff480009d5bbe7cdbbab12fe0474fa7407/index.html#L37-L40)
+> Example: [index.html](https://github.com/markbattistella/docsify-charty/blob/b792e7701e740587f48598c7b61bc7f7ea39c366/docs/index.html#L36-L40)
 
 | Name    | Type      | Example   |  Description                              |
 |---------|-----------|-----------|-------------------------------------------|
@@ -109,63 +97,62 @@ npm i @markbattistella/docsify-charty
     }
   ]
 }
-// close the code block
-// can't show it here
+\`\`\`
 ```
 
 ## Types of charts
 
 ### Circular
 
-#### pie
+#### Pie chart
 
 ![docsify-charty: pie](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/pie.jpg)
 
-#### donut / doughnut
+#### Donut / Doughnut chart
 
 ![docsify-charty: donut](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/donut.jpg)
 
-#### section / sectional
+#### Section / Sectional chart
 
 ![docsify-charty: section](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/section.jpg)
 
-#### rings
+#### Rings chart
 
 ![docsify-charty: rings](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/rings.jpg)
 
 ### Area
 
-#### radar
+#### Radar chart
 
 ![docsify-charty: radar](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/radar.jpg)
 
-#### area
+#### Area chart
 
 ![docsify-charty: area](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/area.jpg)
 
 ### Plot
 
-#### scatter
+#### Scatter chart
 
 ![docsify-charty: scatter](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/scatter.jpg)
 
-#### bubble
+#### Bubble chart
 
 ![docsify-charty: bubble](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/bubble.jpg)
 
-#### line
+#### Line chart
 
 ![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/line.jpg)<br>
 ![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/line-stack.jpg)
 
 ### Bar / Column
 
-### bar / bar-stack
+### Bar / Bar-stack chart
 
 ![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/bar.jpg)<br>
 ![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/bar-stack.jpg)
 
-### column / column-stack
+### Column / Column-stack chart
 
 ![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/column.jpg)<br>
 ![docsify-charty: line](https://raw.githubusercontent.com/markbattistella/docsify-charty/main/docs/demo/column-stack.jpg)
@@ -176,20 +163,12 @@ npm i @markbattistella/docsify-charty
 
 ## Contributing
 
-1. Clone the repo:
+1. Clone the repo: `git clone https://github.com/markbattistella/docsify-charty.git`
 
-    `git clone https://github.com/markbattistella/docsify-charty.git`
+1. Create your feature branch: `git checkout -b my-feature`
 
-1. Create your feature branch:
+1. Commit your changes: `git commit -am 'Add some feature'`
 
-    `git checkout -b my-feature`
-
-1. Commit your changes:
-
-    `git commit -am 'Add some feature'`
-
-1. `Push` to the branch:
-
-    `git push origin my-new-feature`
+1. `Push` to the branch: `git push origin my-new-feature`
 
 1. Submit the `pull` request
