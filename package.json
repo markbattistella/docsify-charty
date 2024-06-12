@@ -1,41 +1,47 @@
 {
-	"name": "@markbattistella/docsify-charty",
-	"version": "2.0.2",
-	"description": "Add charts and graphs to your docsify website",
-	"main": "dist/docsify-charty.min.js",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/markbattistella/docsify-charty.git"
-	},
-	"author": "Mark Battistella",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/markbattistella/docsify-charty/issues"
-	},
-	"homepage": "https://github.com/markbattistella/docsify-charty#readme",
-	"keywords": [
-		"docsify",
-		"plugin",
-		"charts",
-		"graphs",
-		"pie chart",
-		"line graph"
-	],
-	"scripts": {
+  "name": "@markbattistella/docsify-charty",
+  "version": "3.0.0",
+  "description": "Add charts and graphs to your docsify website",
+  "main": "dist/docsify-charty.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markbattistella/docsify-charty.git"
+  },
+  "scripts": {
     "launch": "docsify serve ./docs -o",
-		"update": "ncu -u && npm update && npm install",
-		"babel": "npx babel docs/assets/docsify-charty.js -o dist/docsify-charty.js",
-		"uglify": "uglifyjs dist/docsify-charty.js --verbose -c -m -o dist/docsify-charty.min.js",
-		"minify": "npm run babel && npm run uglify"
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.24.6",
-		"@babel/core": "^7.24.6",
-		"@babel/preset-env": "^7.24.6"
-	},
-	"babel": {
-		"presets": [
-			"@babel/env"
-		]
-	}
+    "update": "ncu -u",
+    "babel": "npx babel ./dist/docsify-charty.js -o ./dist/docsify-charty.babel.js",
+    "uglify": "uglifyjs ./dist/docsify-charty.babel.js --verbose -c -m -o ./dist/docsify-charty.min.js",
+    "minify": "npm run babel && npm run uglify",
+    "patch": "node ./.github/scripts/release.js -patch",
+    "minor": "node ./.github/scripts/release.js -minor",
+    "major": "node ./.github/scripts/release.js -major"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "jsonfile": "^6.1.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env"
+    ]
+  },
+  "unpkg": "./dist/docsify-charty.min.js",
+  "jsdelivr": "./dist/docsify-charty.min.js",
+  "keywords": [
+    "docsify",
+    "plugin",
+    "charts",
+    "graphs",
+    "pie chart",
+    "line graph"
+  ],
+  "author": "Mark Battistella",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markbattistella/docsify-charty/issues"
+  },
+  "homepage": "https://charty.docsify.markbattistella.com/"
 }

@@ -31,8 +31,10 @@ packageData.version = newVersion;
 jsonfile.writeFileSync(packageFile, packageData, { spaces: 2 });
 
 const filesToUpdate = [
-    "./dist/docsify-sidebar.js",
-    "./dist/docsify-sidebar.min.js"
+    "./dist/docsify-charty.js",
+    "./dist/docsify-charty.min.js",
+    "./dist/docsify-charty.css",
+    "./dist/docsify-charty.min.css",
 ];
 
 filesToUpdate.forEach(filePath => {

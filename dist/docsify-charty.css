@@ -1,10 +1,4 @@
-/*
- * docsify-charty.css v2.0.2 (https://markbattistella.github.io/docsify-charty/)
- * Copyright (c) 2021 Mark Battistella (@markbattistella)
- * Licensed under MIT
- */
-
-
+/*! docsify-charty 3.0.0 | (c) Mark Battistella */
 
 /*
  * core
@@ -35,9 +29,6 @@
 	font-size:		calc( var(--charty-size-baseline) * 1px );
 	line-height:	calc( var(--charty-size-baseline) * 1px * 1.5 );
 	color:			var(--charty-colour-text);
-
-	/* printing colour */
-	color-adjust: exact;
 }
 
 /* mode: dark */
