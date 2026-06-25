@@ -18,9 +18,9 @@
     "major": "node ./.github/scripts/release.js -major"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.7",
-    "@babel/core": "^7.24.7",
-    "@babel/preset-env": "^7.24.7",
+    "@babel/cli": "^8.0.1",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
     "jsonfile": "^6.1.0"
   },
   "babel": {
