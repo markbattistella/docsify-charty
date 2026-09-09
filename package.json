@@ -1,7 +1,7 @@
 {
   "name": "@markbattistella/docsify-charty",
-  "version": "3.0.0",
-  "description": "Add charts and graphs to your docsify website",
+  "version": "2026.5.9",
+  "description": "Charts and graphs for your docsify website",
   "main": "dist/docsify-charty.min.js",
   "repository": {
     "type": "git",
@@ -10,23 +10,17 @@
   "scripts": {
     "launch": "docsify serve ./docs -o",
     "update": "ncu -u",
-    "babel": "npx babel ./dist/docsify-charty.js -o ./dist/docsify-charty.babel.js",
-    "uglify": "uglifyjs ./dist/docsify-charty.babel.js --verbose -c -m -o ./dist/docsify-charty.min.js",
-    "minify": "npm run babel && npm run uglify",
+    "uglify": "uglifyjs ./dist/docsify-charty.js --verbose -c -m -o ./dist/docsify-charty.min.js",
+    "minify": "npm run uglify && npm run cssmin",
     "patch": "node ./.github/scripts/release.js -patch",
     "minor": "node ./.github/scripts/release.js -minor",
-    "major": "node ./.github/scripts/release.js -major"
+    "major": "node ./.github/scripts/release.js -major",
+    "cssmin": "cleancss -o ./dist/docsify-charty.min.css ./dist/docsify-charty.css"
   },
   "devDependencies": {
-    "@babel/cli": "^8.0.1",
-    "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.2",
-    "jsonfile": "^6.1.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/env"
-    ]
+    "clean-css-cli": "^5.6.3",
+    "jsonfile": "^6.1.0",
+    "uglify-js": "^3.19.3"
   },
   "unpkg": "./dist/docsify-charty.min.js",
   "jsdelivr": "./dist/docsify-charty.min.js",

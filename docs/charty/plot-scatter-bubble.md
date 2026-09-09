@@ -2,36 +2,44 @@
 
 ```charty
 {
-  "title":   "Bubble chart",
-  "caption": "With a caption",
-  "type":    "bubble",
+  "title": "Bubble chart",
+  "caption": "Point size scales with the value",
+  "type": "bubble",
   "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
+    "numbers": false
   },
   "data": [
-  { "label": "Test 1",  "value": [ 2455, 7665, 47, 70, 443, 2142 ] },
-  { "label": "Test 2",  "value": [ 6321, 8765, 223, 873, 443, 2142 ] }
+    {
+      "label": "Test 1",
+      "value": [2455, 7665, 470, 700, 443, 2142]
+    },
+    {
+      "label": "Test 2",
+      "value": [6321, 8765, 223, 873, 1443, 3142]
+    }
   ]
 }
 ```
 
-# Raw code
+## Raw code
 
 ```json
 {
-  "title":   "Bubble chart",
-  "caption": "With a caption",
-  "type":    "bubble",
+  "title": "Bubble chart",
+  "caption": "Point size scales with the value",
+  "type": "bubble",
   "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
+    "numbers": false
   },
   "data": [
-  { "label": "Test 1",  "value": [ 2455, 7665, 47, 70, 443, 2142 ] },
-  { "label": "Test 2",  "value": [ 6321, 8765, 223, 873, 443, 2142 ] }
+    {
+      "label": "Test 1",
+      "value": [2455, 7665, 470, 700, 443, 2142]
+    },
+    {
+      "label": "Test 2",
+      "value": [6321, 8765, 223, 873, 1443, 3142]
+    }
   ]
 }
 ```

@@ -2,17 +2,22 @@
 
 ```charty
 {
-  "title":   "Review chart",
-  "caption": "With a caption",
-  "type":    "review",
-  "options": {
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Review chart",
+  "caption": "Scores against the highest value in the set",
+  "type": "review",
   "data": [
-    { "label": "2010", "value": 10 },
-	{ "label": "2012", "value": 20 },
-	{ "label": "2014", "value": 30 }
+    {
+      "label": "Documentation",
+      "value": 30
+    },
+    {
+      "label": "Performance",
+      "value": 20
+    },
+    {
+      "label": "Ease of use",
+      "value": 10
+    }
   ]
 }
 ```
@@ -21,17 +26,22 @@
 
 ```json
 {
-  "title":   "Review chart",
-  "caption": "With a caption",
-  "type":    "review",
-  "options": {
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Review chart",
+  "caption": "Scores against the highest value in the set",
+  "type": "review",
   "data": [
-    { "label": "2010", "value": 10 },
-	{ "label": "2012", "value": 20 },
-	{ "label": "2014", "value": 30 }
+    {
+      "label": "Documentation",
+      "value": 30
+    },
+    {
+      "label": "Performance",
+      "value": 20
+    },
+    {
+      "label": "Ease of use",
+      "value": 10
+    }
   ]
 }
 ```

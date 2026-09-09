@@ -6,6 +6,8 @@
 
 This plugin enhances your Docsify documentation by adding SVG charts to your website. It allows you to add in multiple types of charts, including pie, doughnut, sectional, radar, area, scatter, line, and bar types. By utilising this plugin, you can easily show your data in a beautiful interface.
 
+There is a companion plugin, [publish-plugin-charty](https://github.com/markbattistella/publish-plugin-charty), for [Publish](https://github.com/JohnSundell/Publish). The two share a stylesheet and produce byte-identical markup from the same chart definition, so a chart written once looks the same on either site.
+
 ## Installation
 
 ### Update `index.html` file
@@ -56,9 +58,9 @@ There are several options available for the docsify-charty plugin:
 
 | Name    | Type      | Example   |  Description                              |
 |---------|-----------|-----------|-------------------------------------------|
-| `theme` | `String`  | "#EE5599" | Global theme for chart colours in HEX     |
-| `mode`  | `String`  | "light"   | Accepts "dark" or "light"                 |
-| `debug` | `Boolean` | false     | Console logs if charts aren't loading     |
+| `theme` | `String`  | "#EE5599" | Global theme for chart colours in HEX. Series colours are generated from it in OKLCH, so the steps are evenly spaced to the eye. Defaults to `#0984E3` |
+| `mode`  | `String`  | "system"  | Accepts "light", "dark", or "system". Defaults to `system`, which follows the surrounding page rather than forcing a scheme |
+| `debug` | `Boolean` | false     | Console warnings when a chart can't be drawn, and why |
 
 ### Per chart settings
 
@@ -70,7 +72,8 @@ There are several options available for the docsify-charty plugin:
 | `options.theme`   | `String`      | Set an individual theme to this chart. It will override the global theme |
 | `options.legend`  | `Boolean`     | Show the legend. Default `true`          |
 | `options.labels`  | `Boolean`     | Show the chart labels. Default `true`    |
-| `options.numbers` | `Boolean`     | Show the chart numbers. Default `true`   |
+| `options.numbers` | `Boolean`     | Draw the value labels, revealed on hover. Default `true` |
+| `points`          | `Array`       | Axis names for a `radar` chart. May also be given on the first data item |
 | `data.label`      | `String`      | Graphed data point label                 |
 | `data.value`      | `Int / Array` | Graphed value that puts it on the render |
 | `data.colour`     | `String`      | Override the global and theme with a specific colour |
@@ -100,7 +103,29 @@ There are several options available for the docsify-charty plugin:
 \`\`\`
 ```
 
+## Styling
+
+Charty's own styles are plain class selectors — no cascade layer — so that a
+host theme's generic resets can't override them. Notably, `theme-simple` and
+several other Docsify themes ship an unlayered `* { font-size: inherit }`, which
+inside a layer would resize every label in every chart.
+
+To restyle something, write a rule of equal specificity after the stylesheet:
+
+```css
+.charty { --charty-canvas: 34rem; }
+.charty__title { font-size: 1.4em; }
+```
+
+The colour tokens (`--charty-surface`, `--charty-text`, `--charty-muted`,
+`--charty-line`, `--charty-axis`, `--charty-track`, `--charty-focus`) all use
+`light-dark()`, so overriding one means supplying both halves.
+
 ## Types of charts
+
+> The images below were captured before 4.0 and don't reflect the current
+> rendering. See the live docs at
+> [charty.docsify.markbattistella.com](https://charty.docsify.markbattistella.com/).
 
 ### Circular
 

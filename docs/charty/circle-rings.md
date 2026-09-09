@@ -2,19 +2,26 @@
 
 ```charty
 {
-  "title":   "Ring chart",
-  "caption": "With a caption",
-  "type":    "rings",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Ring chart",
+  "caption": "One concentric ring per series",
+  "type": "rings",
   "data": [
-	  { "label": "2010", "value": 0.75 },
-	  { "label": "2010", "value": 0.45 },
-	  { "label": "2010", "value": 0.90 },
-	  { "label": "2012", "value": 0.80 }
+    {
+      "label": "Storage",
+      "value": 0.75
+    },
+    {
+      "label": "Memory",
+      "value": 0.45
+    },
+    {
+      "label": "Network",
+      "value": 0.9
+    },
+    {
+      "label": "Battery",
+      "value": 0.8
+    }
   ]
 }
 ```
@@ -23,19 +30,26 @@
 
 ```json
 {
-  "title":   "Ring chart",
-  "caption": "With a caption",
-  "type":    "rings",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Ring chart",
+  "caption": "One concentric ring per series",
+  "type": "rings",
   "data": [
-	  { "label": "2010", "value": 0.75 },
-	  { "label": "2010", "value": 0.45 },
-	  { "label": "2010", "value": 0.90 },
-	  { "label": "2012", "value": 0.80 }
+    {
+      "label": "Storage",
+      "value": 0.75
+    },
+    {
+      "label": "Memory",
+      "value": 0.45
+    },
+    {
+      "label": "Network",
+      "value": 0.9
+    },
+    {
+      "label": "Battery",
+      "value": 0.8
+    }
   ]
 }
 ```

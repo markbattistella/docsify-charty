@@ -2,19 +2,14 @@
 
 ```charty
 {
-  "title":   "Area chart",
-  "caption": "With a caption",
-  "type":    "area",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Area chart",
+  "caption": "A single series",
+  "type": "area",
   "data": [
     {
-		"label": "2010",
-		"value": [120, 23, 45, 34, 52, 43, 59, 40]
-	 }
+      "label": "2010",
+      "value": [120, 23, 45, 34, 52, 43, 59, 40]
+    }
   ]
 }
 ```
@@ -23,19 +18,14 @@
 
 ```json
 {
-  "title":   "Area chart",
-  "caption": "With a caption",
-  "type":    "area",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Area chart",
+  "caption": "A single series",
+  "type": "area",
   "data": [
     {
-		"label": "2010",
-		"value": [120, 23, 45, 34, 52, 43, 59, 40]
-	 }
+      "label": "2010",
+      "value": [120, 23, 45, 34, 52, 43, 59, 40]
+    }
   ]
 }
 ```

@@ -2,42 +2,38 @@
 
 ```charty
 {
-  "title":   "Line chart",
-  "caption": "With a caption",
-  "type":    "line",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Line chart",
+  "caption": "Two series on one scale",
+  "type": "line",
   "data": [
-	  {
-		  "label": "Features",
-		  "value": [ 231, 923, 234, 834, 345, 643, 464, 0, 743, 335 ]
-	  },
-	  { "label": "Sales",  "value": [ 10, 90, 20, 80, 30, 70 ] }
+    {
+      "label": "Features",
+      "value": [231, 923, 234, 834, 345, 643, 464, 120, 743, 335]
+    },
+    {
+      "label": "Sales",
+      "value": [110, 490, 320, 680, 230, 570, 380, 640, 290, 510]
+    }
   ]
 }
 ```
 
-# Raw code
+## Raw code
 
 ```json
 {
-  "title":   "Line chart",
-  "caption": "With a caption",
-  "type":    "line",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Line chart",
+  "caption": "Two series on one scale",
+  "type": "line",
   "data": [
-	  {
-		  "label": "Features",
-		  "value": [ 231, 923, 234, 834, 345, 643, 464, 0, 743, 335 ]
-	  },
-	  { "label": "Sales",  "value": [ 10, 90, 20, 80, 30, 70 ] }
+    {
+      "label": "Features",
+      "value": [231, 923, 234, 834, 345, 643, 464, 120, 743, 335]
+    },
+    {
+      "label": "Sales",
+      "value": [110, 490, 320, 680, 230, 570, 380, 640, 290, 510]
+    }
   ]
 }
 ```

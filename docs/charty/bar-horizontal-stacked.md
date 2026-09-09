@@ -2,19 +2,26 @@
 
 ```charty
 {
-  "title":   "Bar (stacked) chart",
-  "caption": "With a caption",
-  "type":    "bar-stacked",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Column (stacked) chart",
+  "caption": "The same data, running horizontally",
+  "type": "column-stacked",
   "data": [
-	{ "label": "2012", "value": [1, 2, 3, 4] },
-	{ "label": "2012", "value": [5, 6, 7, 8] },
-	{ "label": "2012", "value": [9, 1, 2, 3] },
-	{ "label": "2012", "value": [4, 5, 6, 7] }
+    {
+      "label": "Swift",
+      "value": [11, 2, 3, 4]
+    },
+    {
+      "label": "Objective-C",
+      "value": [5, 6, 7, 8]
+    },
+    {
+      "label": "Shell",
+      "value": [9, 1, 2, 3]
+    },
+    {
+      "label": "Other",
+      "value": [4, 5, 6, 7]
+    }
   ]
 }
 ```
@@ -23,19 +30,26 @@
 
 ```json
 {
-  "title":   "Bar (stacked) chart",
-  "caption": "With a caption",
-  "type":    "bar-stacked",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Column (stacked) chart",
+  "caption": "The same data, running horizontally",
+  "type": "column-stacked",
   "data": [
-	{ "label": "2012", "value": [1, 2, 3, 4] },
-	{ "label": "2012", "value": [5, 6, 7, 8] },
-	{ "label": "2012", "value": [9, 1, 2, 3] },
-	{ "label": "2012", "value": [4, 5, 6, 7] }
+    {
+      "label": "Swift",
+      "value": [11, 2, 3, 4]
+    },
+    {
+      "label": "Objective-C",
+      "value": [5, 6, 7, 8]
+    },
+    {
+      "label": "Shell",
+      "value": [9, 1, 2, 3]
+    },
+    {
+      "label": "Other",
+      "value": [4, 5, 6, 7]
+    }
   ]
 }
 ```

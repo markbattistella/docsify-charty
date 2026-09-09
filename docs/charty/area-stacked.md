@@ -2,23 +2,18 @@
 
 ```charty
 {
-  "title":   "Area chart",
-  "caption": "With a caption",
-  "type":    "area",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Area chart",
+  "caption": "Two series layered over each other",
+  "type": "area",
   "data": [
     {
-		"label": "2010",
-		"value": [120, 23, 45, 34, 52, 43, 59, 40]
-	 },
-	 {
- 		"label": "2010",
- 		"value": [1520, 523, 445, 364, 952, 43, 959, 40]
- 	 }
+      "label": "2010",
+      "value": [520, 523, 445, 364, 952, 430, 959, 640]
+    },
+    {
+      "label": "2011",
+      "value": [120, 230, 45, 340, 520, 43, 590, 400]
+    }
   ]
 }
 ```
@@ -27,23 +22,18 @@
 
 ```json
 {
-  "title":   "Area chart",
-  "caption": "With a caption",
-  "type":    "area",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Area chart",
+  "caption": "Two series layered over each other",
+  "type": "area",
   "data": [
     {
-		"label": "2010",
-		"value": [120, 23, 45, 34, 52, 43, 59, 40]
-	 },
-	 {
- 		"label": "2010",
- 		"value": [1520, 523, 445, 364, 952, 43, 959, 40]
- 	 }
+      "label": "2010",
+      "value": [520, 523, 445, 364, 952, 430, 959, 640]
+    },
+    {
+      "label": "2011",
+      "value": [120, 230, 45, 340, 520, 43, 590, 400]
+    }
   ]
 }
 ```

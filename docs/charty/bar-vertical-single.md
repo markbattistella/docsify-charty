@@ -2,17 +2,18 @@
 
 ```charty
 {
-  "title":   "Column chart",
-  "caption": "With a caption",
-  "type":    "column",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Bar chart",
+  "caption": "Grouped, running vertically",
+  "type": "bar",
   "data": [
-	{ "label": "2012", "value": [199, 100] },
-	{ "label": "2014", "value": [85, 217] }
+    {
+      "label": "2012",
+      "value": [199, 100]
+    },
+    {
+      "label": "2014",
+      "value": [85, 217]
+    }
   ]
 }
 ```
@@ -21,17 +22,18 @@
 
 ```json
 {
-  "title":   "Column chart",
-  "caption": "With a caption",
-  "type":    "column",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Bar chart",
+  "caption": "Grouped, running vertically",
+  "type": "bar",
   "data": [
-	{ "label": "2012", "value": [199, 100] },
-	{ "label": "2014", "value": [85, 217] }
+    {
+      "label": "2012",
+      "value": [199, 100]
+    },
+    {
+      "label": "2014",
+      "value": [85, 217]
+    }
   ]
 }
 ```

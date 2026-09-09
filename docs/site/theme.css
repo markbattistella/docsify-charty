@@ -1,0 +1,291 @@
+/*! docsify-charty documentation theme | (c) Mark Battistella */
+
+/*
+ * A modernisation layer, loaded after style.min.css so it can adjust
+ * docsify-themeable's custom properties without editing the shared stylesheet.
+ *
+ * The main thing it adds is a dark colour scheme. Charty resolves its own
+ * colours with light-dark(), following whatever `color-scheme` the page
+ * declares, so declaring one here is what lets the charts match the page.
+ */
+
+:root {
+	color-scheme: light dark;
+
+	--charty-doc-radius: 12px;
+	--charty-doc-radius-s: 8px;
+
+	--base-font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Inter, system-ui, sans-serif, "Apple Color Emoji";
+	--mono-font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+		Consolas, monospace;
+
+	--base-line-height: 1.65;
+	--content-max-width: 52em;
+}
+
+/*
+ * dark
+ */
+@media (prefers-color-scheme: dark) {
+
+	:root {
+		--mono-hue: 222;
+		--mono-saturation: 10%;
+
+		--base-background-color: hsl(var(--mono-hue), 14%, 7%);
+		--base-color: hsl(var(--mono-hue), 12%, 84%);
+
+		--heading-color: hsl(var(--mono-hue), 16%, 95%);
+		--strong-color: var(--heading-color);
+
+		--mono-tint3: hsl(var(--mono-hue), 14%, 11%);
+		--mono-tint2: hsl(var(--mono-hue), 12%, 20%);
+		--mono-tint1: hsl(var(--mono-hue), 10%, 38%);
+		--mono-shade1: hsl(var(--mono-hue), 10%, 62%);
+		--mono-shade2: hsl(var(--mono-hue), 12%, 78%);
+		--mono-shade3: hsl(var(--mono-hue), 16%, 95%);
+
+		--sidebar-background: hsl(var(--mono-hue), 14%, 9%);
+		--sidebar-border-color: hsl(var(--mono-hue), 12%, 16%);
+		--sidebar-nav-link-color: hsl(var(--mono-hue), 10%, 62%);
+
+		--navbar-root-color: hsl(var(--mono-hue), 10%, 70%);
+
+		--code-theme-background: hsl(var(--mono-hue), 14%, 11%);
+		--code-theme-text: hsl(var(--mono-hue), 12%, 84%);
+		--code-theme-comment: hsl(var(--mono-hue), 8%, 48%);
+		--code-theme-keyword: #7fb2ff;
+		--code-theme-selector: #9ad67d;
+		--code-theme-tag: #ff92c2;
+		--code-theme-function: #ff8a80;
+		--code-theme-operator: #d7b98e;
+		--code-theme-punctuation: hsl(var(--mono-hue), 8%, 55%);
+		--code-theme-variable: #ffc46b;
+
+		--blockquote-background: hsl(var(--mono-hue), 14%, 11%);
+		--table-cell-border-color: hsl(var(--mono-hue), 12%, 18%);
+	}
+
+	/* The cover heading pins its accent half so it reads on the gradient. */
+	section.cover h1 span span,
+	section.cover h1 strong {
+		color: hsl(var(--mono-hue), 16%, 12%);
+	}
+
+	img {
+		filter: brightness(0.92);
+	}
+}
+
+/*
+ * type
+ */
+body {
+	font-synthesis-weight: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+.markdown-section h1,
+.markdown-section h2,
+.markdown-section h3 {
+	letter-spacing: -0.022em;
+}
+
+.markdown-section h2 {
+	margin-top: 2.5em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid var(--mono-tint2);
+}
+
+/*
+ * scrollbars
+ *
+ * The 20px WebKit scrollbar this replaces was the single most dated thing on
+ * the page, and it never applied outside Chromium anyway.
+ */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	border: 0;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--mono-tint1);
+	border: 3px solid transparent;
+	border-radius: 99px;
+	background-clip: content-box;
+}
+
+html {
+	scrollbar-width: thin;
+	scrollbar-color: var(--mono-tint1) transparent;
+}
+
+/*
+ * code
+ */
+.markdown-section pre,
+.markdown-section pre[data-lang] {
+	border: 1px solid var(--mono-tint2);
+	border-radius: var(--charty-doc-radius);
+	background: var(--code-theme-background);
+	box-shadow: none;
+}
+
+.markdown-section pre[data-lang]::after {
+	top: 0.7em;
+	right: 0.9em;
+	font-family: var(--mono-font-family);
+	font-size: 0.7em;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	opacity: 0.5;
+}
+
+.markdown-section code {
+	border-radius: 5px;
+}
+
+/*
+ * tabs
+ *
+ * The tab strip is already a wrapping flex container. style.min.css gives each
+ * tab a fixed 1/n share of the width, which is narrower than most of the
+ * labels — so the text spilled out of its own background. Sizing each tab to
+ * its label lets the row wrap onto a second line instead.
+ */
+[class*="docsify-tabs--"] > .docsify-tabs__tab {
+	flex: 0 0 auto;
+	width: auto;
+	margin: 0 0.4rem 0.5rem 0;
+	padding: 0.5em 1.1em;
+	border: 0;
+	border-radius: 99px;
+	background: transparent;
+	color: var(--mono-shade1);
+	font-weight: 600;
+	letter-spacing: 0.01em;
+	line-height: 1.4;
+	transition: background-color 160ms ease, color 160ms ease;
+}
+
+/* Space between the wrapped tab rows and the panel below them. */
+[class*="docsify-tabs--"] > .docsify-tabs__tab--active + .docsify-tabs__content {
+	margin-top: 0.5rem;
+}
+
+[class*="docsify-tabs--"] > .docsify-tabs__tab:hover {
+	background: var(--mono-tint3);
+	color: var(--heading-color);
+}
+
+[class*="docsify-tabs--"] > .docsify-tabs__tab--active {
+	background: var(--theme-color);
+	color: #fff;
+	box-shadow: none;
+}
+
+[class*="docsify-tabs--"] .docsify-tabs__tab-content,
+[class*="docsify-tabs--"] .docsify-tabs__content {
+	border: 0;
+}
+
+/*
+ * charts
+ *
+ * Each example sits on a card, so it reads as a specimen rather than as part
+ * of the running text.
+ */
+.markdown-section .charty {
+	margin: 1.75em 0 2em;
+	padding: 1.75em;
+	border: 1px solid var(--mono-tint2);
+	border-radius: var(--charty-doc-radius);
+	background: var(--base-background-color);
+}
+
+/*
+ * sidebar
+ */
+.sidebar {
+	border-right: 1px solid var(--mono-tint2);
+}
+
+.sidebar .app-name {
+	margin-top: 1.25rem;
+}
+
+/*
+ * cover
+ */
+section.cover .cover-main p:last-child a {
+	border-radius: var(--charty-doc-radius-s);
+	backdrop-filter: blur(6px);
+	transition: background-color 160ms ease, transform 160ms ease;
+}
+
+section.cover .cover-main p:last-child a:hover {
+	transform: translateY(-1px);
+}
+
+.cover .cover-main p:last-child a:first-child {
+	border-radius: var(--charty-doc-radius-s);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+/*
+ * images
+ */
+img {
+	border-radius: var(--charty-doc-radius);
+}
+
+/*
+ * small screens
+ */
+@media (max-width: 800px) {
+
+	/* style.min.css stretches each tab to the full width here; with tabs sized
+	   to their labels they wrap on their own and stay readable. */
+	[class*="docsify-tabs--"] > .docsify-tabs__tab {
+		width: auto;
+		padding: 0.45em 0.9em;
+		font-size: 0.9em;
+	}
+
+	.markdown-section {
+		padding: 1.5rem 1.15rem 3rem;
+	}
+
+	.markdown-section .charty {
+		padding: 1.15em;
+	}
+
+	/* Wide tables scroll rather than forcing the page sideways. */
+	.markdown-section table {
+		display: block;
+		overflow-x: auto;
+		max-width: 100%;
+	}
+
+	section.cover h1 {
+		font-size: clamp(2rem, 9vw, 3rem);
+	}
+
+	.cover .cover-main p:last-child a:first-child {
+		max-width: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	* {
+		transition-duration: 0.01ms !important;
+	}
+}

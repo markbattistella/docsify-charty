@@ -11,6 +11,7 @@
 	<!-- theme: simple -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
 	<link rel="stylesheet" href="site/style.min.css">
+	<link rel="stylesheet" href="site/theme.css">
 
 </head>
 
@@ -34,8 +35,8 @@
 		tabs:				{ persist: true, theme: 'material' },
 
 		charty: {
-			"theme": "#EE5599",
-			"mode":  "light"
+			"theme": "#e84393",
+			"mode":  "system"
 		}
 	}
 	</script>
@@ -46,9 +47,11 @@
 	<!-- docsify: tabs -->
 	<script src="https://cdn.jsdelivr.net/npm/docsify-tabs@latest"></script>
 
-	<!-- local: docsify-charty -->
-	<script src="https://unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.js"></script>
-	<link rel="stylesheet" href="https://unpkg.com/@markbattistella/docsify-charty@latest/dist/docsify-charty.min.css">
+	<!-- docsify-charty -->
+	<!-- To try local changes, serve the repository root rather than ./docs and
+	     point these at ../dist/docsify-charty.js and ../dist/docsify-charty.css -->
+	<script src="../dist/docsify-charty.min.js"></script>
+	<link rel="stylesheet" href="../dist/docsify-charty.min.css">
 
 </body>
 </html>

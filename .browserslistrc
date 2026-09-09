@@ -1,4 +1,8 @@
-# browsers we support
-last 4 versions
-> 0.5%
-ie >= 11
+# Browsers we support.
+#
+# Charty leans on CSS features that all became broadly available during 2023
+# and 2024 — :has(), light-dark(), oklch(), nesting, and container queries —
+# so there is no version here that predates them. Older browsers get the
+# markup and the data, just without the styling.
+defaults
+not dead

@@ -2,18 +2,22 @@
 
 ```charty
 {
-  "title":   "Section chart",
-  "caption": "With a caption",
-  "type":    "section",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Section chart",
+  "caption": "Values are fractions, and need not add up to one",
+  "type": "sectional",
   "data": [
-	  { "label": "2012", "value": 0.3 },
-	  { "label": "2010", "value": 0.5 },
-	  { "label": "2012", "value": 0.02 }
+    {
+      "label": "Complete",
+      "value": 0.5
+    },
+    {
+      "label": "In progress",
+      "value": 0.3
+    },
+    {
+      "label": "Blocked",
+      "value": 0.02
+    }
   ]
 }
 ```
@@ -22,18 +26,22 @@
 
 ```json
 {
-  "title":   "Section chart",
-  "caption": "With a caption",
-  "type":    "section",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Section chart",
+  "caption": "Values are fractions, and need not add up to one",
+  "type": "sectional",
   "data": [
-	  { "label": "2012", "value": 0.3 },
-	  { "label": "2010", "value": 0.5 },
-	  { "label": "2012", "value": 0.02 }
+    {
+      "label": "Complete",
+      "value": 0.5
+    },
+    {
+      "label": "In progress",
+      "value": 0.3
+    },
+    {
+      "label": "Blocked",
+      "value": 0.02
+    }
   ]
 }
 ```

@@ -2,18 +2,22 @@
 
 ```charty
 {
-  "title":   "Pie chart",
-  "caption": "With a caption",
-  "type":    "pie",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Pie chart",
+  "caption": "Each slice is its share of the total",
+  "type": "pie",
   "data": [
-      { "label": "2012", "value": 1024 },
-	  { "label": "2010", "value": 200 },
-	  { "label": "2011", "value": 560 }
+    {
+      "label": "2012",
+      "value": 1024
+    },
+    {
+      "label": "2010",
+      "value": 200
+    },
+    {
+      "label": "2011",
+      "value": 560
+    }
   ]
 }
 ```
@@ -22,18 +26,22 @@
 
 ```json
 {
-  "title":   "Pie chart",
-  "caption": "With a caption",
-  "type":    "pie",
-  "options": {
-	"legend":  true,
-    "labels":  true,
-    "numbers": true
-  },
+  "title": "Pie chart",
+  "caption": "Each slice is its share of the total",
+  "type": "pie",
   "data": [
-      { "label": "2012", "value": 1024 },
-	  { "label": "2010", "value": 200 },
-	  { "label": "2011", "value": 560 }
+    {
+      "label": "2012",
+      "value": 1024
+    },
+    {
+      "label": "2010",
+      "value": 200
+    },
+    {
+      "label": "2011",
+      "value": 560
+    }
   ]
 }
 ```

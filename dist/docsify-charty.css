@@ -1,420 +1,594 @@
-/*! docsify-charty 3.0.0 | (c) Mark Battistella */
+/*! charty 4.0.0 | (c) Mark Battistella | MIT */
+
+/*
+ * Charty deliberately does NOT wrap this in a cascade layer.
+ *
+ * A layer would read as the polite choice — host styles win by default — but
+ * unlayered rules beat layered ones no matter how specific the layered rule
+ * is, and host themes routinely ship an unlayered `* { font-size: inherit }`
+ * reset. Inside a layer that single rule sets every SVG label to the page's
+ * body size and the charts fall apart. Plain class selectors are specific
+ * enough to hold their own; to override one, write a rule of equal
+ * specificity after this file.
+ */
 
 /*
  * core
  */
-.docsify-charty {
+.charty {
 
 	/* colours */
-	--charty-colour-focus:	#FDCB6E;
-	--charty-colour-dark:	#333;
-	--charty-colour-light:	#CCC;
-	--charty-colour-medium:	#888;
-
-	/* colours - themes */
+	--charty-surface:	light-dark(#ffffff, #14161a);
+	--charty-text:		light-dark(#1f2328, #e6e9ee);
+	--charty-muted:		light-dark(#616b76, #98a3b0);
+	--charty-line:		light-dark(#e3e7ec, #2a3038);
+	--charty-axis:		light-dark(#b3bcc6, #3d4650);
+	--charty-track:		light-dark(#eef1f5, #232a33);
+	--charty-focus:		light-dark(#0b62d6, #86b6ff);
 
 	/* sizes */
-	--charty-size-title:	0;
-	--charty-size-baseline: 16;
-	--charty-size-hole:		50;
-	--charty-size-radius:	0.3;
+	--charty-radius:	0.25rem;
+	--charty-gap:		1.75rem;
+	--charty-canvas:	28rem;
 
-	/* normal */
-	position:		relative;
-    display:		block;
-    margin:			0 auto;
-    padding:		0;
-    border:			0;
-	width:			100%;
-	font-size:		calc( var(--charty-size-baseline) * 1px );
-	line-height:	calc( var(--charty-size-baseline) * 1px * 1.5 );
-	color:			var(--charty-colour-text);
+	/* how far a series fades when another one is picked out */
+	--charty-fade:		0.14;
+
+	/* the plot area drives the layout breakpoint, not the viewport */
+	container-type: inline-size;
+
+	display: block;
+	margin: 0 0 2.5rem;
+	padding: 0;
+	border: 0;
+	color: var(--charty-text);
+	font-size: 1rem;
+	line-height: 1.5;
 }
 
-/* mode: dark */
-.docsify-charty.dark {
-	--charty-colour-focus:	#023491;
-	--charty-colour-dark:	#CCC;
-	--charty-colour-light:	#333;
-	--charty-colour-medium:	#777;
-}
-
-.docsify-charty,
-.docsify-charty:before,
-.docsify-charty:after,
-.docsify-charty *,
-.docsify-charty *:before,
-.docsify-charty *:after {
+.charty *,
+.charty *::before,
+.charty *::after {
 	box-sizing: border-box;
-	vertical-align: middle;
 }
-
-.docsify-charty .container {
-	display: flex;
-	flex-direction: row;
-	margin-bottom: 4em !important;
-}
-
-.docsify-charty .container > * {
-	align-self: center;
-}
-
-.docsify-charty .dataset {
-	max-width: 25em;
-	width: 100%;
-}
-
-
-
-/*
- * svg
- */
-
-.docsify-charty .dataset svg {
-	overflow: visible;
-	max-width: 25em;
-	max-height: 25em;
-}
-
-/* all svg items */
-.docsify-charty .dataset svg * {
-	transform-origin: center center;
-}
-
-.docsify-charty .dataset polyline,
-.docsify-charty .dataset line,
-.docsify-charty .dataset.radar .data-header circle {
-	fill: none;
-	stroke: var(--charty-colour-light);
-}
-
-.docsify-charty text {
-	transition: all 600ms;
-	alignment-baseline: middle;
-	text-anchor: middle;
-	font-size: 15%;
-	fill: var(--charty-colour-light);
-}
-
-.docsify-charty .data-header text {
-	fill: var(--charty-colour-medium);
-}
-
-.docsify-charty .data-item text {
-	opacity: 0;
-}
-
-.docsify-charty .dataset.radar text {
-	font-size: 35%;
-}
-
-
-
-/*
- * focus / highlighting
- */
-.docsify-charty .focus:after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	background: var(--charty-colour-focus);
-	border-radius: calc( var(--charty-size-radius) * 1em );
-	opacity: 0.5;
-	top:	0;
-	bottom:	0;
-	left:	0;
-	right:	0;
-}
-
-
 
 /*
  * header
  */
-.docsify-charty header {
-	margin-bottom: 1.3em;
+.charty__header {
+	margin: 0 0 1.25rem;
+	padding: 0;
 }
 
-.docsify-charty h3 {
-	--charty-size-title: 1.35;
-	font-size: calc( var(--charty-size-title) * 1em);
-	font-weight: bold;
-	text-align: left;
+.charty__title {
+	margin: 0;
+	color: var(--charty-text);
+	font-size: 1.15em;
+	font-weight: 650;
+	line-height: 1.3;
+	letter-spacing: -0.01em;
 }
 
-.docsify-charty figcaption {
+.charty__caption {
+	margin: 0.25rem 0 0;
+	padding: 0;
+	color: var(--charty-muted);
 	font-size: 0.9em;
-	color: var(--charty-colour-medium);
 }
 
+.charty__footnote {
+	margin: 0.85rem 0 0;
+	padding: 0;
+	color: var(--charty-muted);
+	font-size: 0.85em;
+	text-align: end;
+}
 
+/*
+ * layout
+ */
+.charty__container {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-items: center;
+	gap: var(--charty-gap);
+}
+
+.charty--legend .charty__container {
+	grid-template-columns: minmax(0, 1fr) minmax(8rem, auto);
+}
+
+.charty__plot {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	grid-template-areas:
+		"vertical canvas"
+		".        horizontal";
+	align-items: center;
+	gap: 0.4rem;
+	min-inline-size: 0;
+}
+
+.charty__canvas {
+	grid-area: canvas;
+	inline-size: 100%;
+	max-inline-size: var(--charty-canvas);
+	min-inline-size: 0;
+}
+
+.charty--rating .charty__canvas {
+	max-inline-size: none;
+}
+
+/*
+ * axes
+ *
+ * Axis titles are real elements placed on a grid. The original drew them
+ * with attr() inside ::before and ::after at a negative z-index, which put
+ * them behind the page rather than beside the chart.
+ */
+.charty__axis {
+	color: var(--charty-muted);
+	font-size: 0.72em;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.charty__axis--vertical {
+	grid-area: vertical;
+	writing-mode: vertical-rl;
+	rotate: 180deg;
+	justify-self: center;
+}
+
+.charty__axis--horizontal {
+	grid-area: horizontal;
+	text-align: center;
+}
+
+/*
+ * svg
+ */
+.charty__svg {
+	display: block;
+	inline-size: 100%;
+	block-size: auto;
+	font-family: inherit;
+	font-size: 4px;
+	overflow: visible;
+}
+
+/*
+ * Alignment is deliberately left to each label's own presentation
+ * attributes; a rule here would override every one of them.
+ */
+.charty__svg text {
+	fill: var(--charty-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.charty__axis-lines line {
+	fill: none;
+	stroke: var(--charty-axis);
+	stroke-width: 0.7;
+	stroke-linecap: square;
+}
+
+.charty__grid-lines line {
+	fill: none;
+	stroke: var(--charty-line);
+	stroke-width: 0.4;
+	stroke-dasharray: 3 3;
+}
+
+.charty__grid-rings circle {
+	fill: none;
+	stroke: var(--charty-line);
+	stroke-width: 0.4;
+}
+
+.charty__series {
+	transition: opacity 220ms ease;
+}
+
+/*
+ * Values stay out of the way until a series is picked out. Showing every
+ * number at once buries the shape of the data under the labels, especially
+ * where several series overlap.
+ */
+.charty__values {
+	opacity: 0;
+	transition: opacity 180ms ease;
+}
+
+.charty__series:hover .charty__values {
+	opacity: 1;
+}
+
+.charty__values text {
+	fill: var(--charty-text);
+	font-size: 0.9em;
+}
+
+/*
+ * highlighting
+ *
+ * Pointing at a legend entry fades the other series. This used to be two
+ * event listeners adding classes; :has() does it with no script at all,
+ * and picking up :focus-visible means it now works from the keyboard too.
+ */
+.charty__legend-item:is(:hover, :focus-visible) {
+	background: var(--charty-track);
+}
+
+.charty__legend-item:focus-visible {
+	outline: 2px solid var(--charty-focus);
+	outline-offset: 1px;
+}
 
 /*
  * legend
  */
-.docsify-charty.legend fieldset {
-	order: 2;
-	margin-left: auto;
-	border-width: 5px 0 0 0;
-	border-color: var(--charty-colour-light);
-	border-style: solid;
-	font-size: 0.9em;
-	max-width: 30%;
-	width: 100%;
-}
-
-.docsify-charty.legend fieldset legend {
-	font-size: 1em;
-	font-family: sans-serif;
-	font-weight: bold;
-	padding: 0 1em;
-	margin: 0 0 0.5em -1em;
-}
-
-.docsify-charty.legend fieldset label {
-	display: block;
-	text-indent: -2em;
-	margin: 0.25em 0 0 2em;
-	line-height: 1.5em;
-	border-radius: 3px;
-	padding: 2px 5px;
-}
-
-.docsify-charty.legend fieldset label span {
-	height: 1em;
-	width: 1em;
-	margin-right: 1em;
-	border-radius: 0.2em;
-	display: inline-block;
-}
-
-.docsify-charty.legend fieldset label:hover {
-	background: var(--charty-colour-light);
-}
-
-
-
-/*
- * hover events
- */
-.docsify-charty.legend .dataset .data-item {
-	opacity: 0.85;
-	transition: opacity 300ms;
-}
-
-.docsify-charty.legend.hover .dataset .data-item {
-	opacity: 0.1;
-}
-
-/* hover: heading */
-.docsify-charty header:hover ~ .container .data-text text,
-.docsify-charty header:hover ~ .container .data-item:after,
-
-/* hover: label */
-.docsify-charty .dataset .data-item.active .data-text text,
-.docsify-charty.legend.hover .dataset .data-item.active,
-
-/* hover: data-item */
-.docsify-charty .data-item:hover text,
-
-/* hover: data-text */
-.docsify-charty .data-text text:hover,
-.docsify-charty .data-text text.focus,
-.docsify-charty .dataset.bar .data-item:hover:after {
-	opacity: 1;
-}
-
-
-
-/*
- * axes
- */
-.docsify-charty.axes .dataset {
-	padding: 0;
+.charty__legend {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
 	margin: 0;
-	border-width: 0 0 3px 3px;
-	border-style: solid;
-	border-color: var(--charty-colour-dark, #333);
-	position: relative;
+	padding: 0.85rem 0 0;
+	border-block-start: 2px solid var(--charty-line);
+	list-style: none;
+	font-size: 0.9em;
 }
 
-.docsify-charty.axes .dataset[axes-horizontal] {
-	margin-bottom: 2em;
-}
-.docsify-charty.axes .dataset[axes-vertical] {
-	margin-left: 3.5em;
-}
-
-.docsify-charty.axes .dataset:before,
-.docsify-charty.axes .dataset:after  {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	left: 0;
-	width: 100%;
-	font-size: 0.7em;
-	font-weight: bold;
-	text-align: center;
-	letter-spacing: 1px;
-	color: var(--charty-colour-dark, #333);
+/*
+ * Text inside a chart states its own colour rather than inheriting it. Host
+ * themes style descendants of their content wrapper — `.markdown-section li`
+ * and the like — with selectors that outrank inheritance from `.charty`.
+ */
+.charty__legend-item {
+	color: var(--charty-text);
+	display: flex;
+	margin: 0;
+	align-items: center;
+	gap: 0.55rem;
+	padding: 0.2rem 0.4rem;
+	border-radius: var(--charty-radius);
+	transition: background-color 180ms ease;
 }
 
-.docsify-charty.axes .dataset:before {
-	content: attr(axes-horizontal);
-	bottom: -5.5em;
+.charty__swatch {
+	flex: none;
+	inline-size: 0.8em;
+	block-size: 0.8em;
+	border-radius: 2px;
+	background: var(--charty-series, currentColor);
 }
 
-.docsify-charty.axes .dataset:after {
-	content: attr(axes-vertical);
-	transform-origin: top right;
-	left: calc( -100% - 5.5em );
-	transform: rotate(-90deg);
+.charty__legend-label {
+	color: var(--charty-text);
+	min-inline-size: 0;
+	overflow-wrap: anywhere;
 }
 
-
+.charty__legend-value {
+	margin-inline-start: auto;
+	padding-inline-start: 0.75rem;
+	color: var(--charty-muted);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
 
 /*
  * charty - radar
  */
-.docsify-charty .dataset.radar svg {
-	transform: scale(0.5) translate(50%, 50%);
+.charty--radar .charty__svg {
+	font-size: 9px;
 }
 
-.docsify-charty .dataset.radar svg * {
-    transform-origin: 0 0;
+.charty--radar .charty__grid-lines line,
+.charty--radar .charty__grid-rings circle {
+	stroke-width: 0.9;
 }
 
-.docsify-charty .dataset.radar .data-header circle:nth-child( even ) {
-	opacity: 0.3;
+.charty--radar .charty__grid-rings circle:nth-child(even) {
+	opacity: 0.45;
 }
 
-.docsify-charty .dataset.radar .data-container,
-.docsify-charty .dataset.radar .data-header line,
-.docsify-charty .dataset.radar .data-header .data-text {
-	transform-origin: top left;
+.charty--radar .charty__grid-labels text {
+	fill: var(--charty-text);
+	font-weight: 600;
 }
 
-.docsify-charty .dataset.radar svg .data-header line {
-	transform: rotate( calc( var(--angle) * 1deg ) );
+.charty--radar .charty__series {
+	opacity: 0.7;
 }
-
-.docsify-charty .dataset.radar .data-header text {
-	font-weight: bold;
-	transform: rotate( calc( var(--angle) * 1deg ) );
-}
-
-
 
 /*
- * charty - pie / donut / section / ring
+ * charty - area
  */
-.docsify-charty .dataset.pie	 .data-item,
-.docsify-charty .dataset.donut	 .data-item,
-.docsify-charty .dataset.section .data-item,
-.docsify-charty .dataset.ring	 .data-item {
-	transform: rotate( -90deg );
+.charty--area .charty__series {
+	opacity: 0.78;
 }
 
-.docsify-charty .dataset.donut #donut-hole circle {
-	fill: black;
-	r: calc( var(--charty-size-hole, 50) * 1% / 2 );
+/*
+ * charty - donut / ring
+ */
+.charty__ring-track {
+	stroke: var(--charty-track);
 }
-
-.docsify-charty .dataset.ring .data-item circle.ring-bg {
-	fill: none;
-	stroke: var(--charty-colour-light);
-}
-
-
 
 /*
  * charty - bar / column
  */
-.docsify-charty .dataset.column .data-container,
-.docsify-charty .dataset.column-stack .data-container {
-	transform: rotate( 90deg );
+.charty--bar .charty__series rect,
+.charty--column .charty__series rect,
+.charty--bar-stack .charty__series rect,
+.charty--column-stack .charty__series rect {
+	rx: 0.6;
 }
 
-
+.charty__categories text {
+	fill: var(--charty-text);
+}
 
 /*
  * charty - rating
  */
-.docsify-charty .dataset.rating {
-	max-width: none;
-}
-
-.docsify-charty .dataset.rating small {
-	display: block;
-	text-align: right;
-}
-
-.docsify-charty .dataset.rating .data-item {
+.charty__ratings {
 	display: flex;
-	font-weight: bold;
-	color: #FFF;
-	text-align: center;
-	line-height: 2.75;
-	margin-top: 1px;
+	flex-direction: column;
+	gap: 2px;
 	overflow: hidden;
+	border-radius: var(--charty-radius);
 }
 
-.docsify-charty .dataset.rating .data-item:nth-of-type(1) {
-	border-radius: 2px 2px 0 0;
+.charty__rating {
+	display: grid;
+	grid-template-columns: minmax(0, 11em) 4em minmax(0, 1fr);
+	gap: 2px;
+	min-block-size: 2.5rem;
 }
 
-.docsify-charty .dataset.rating .data-item:nth-last-of-type(1) {
-	border-radius: 0 0 2px 2px;
+.charty__rating-label,
+.charty__rating-value {
+	color: var(--charty-text);
+	display: flex;
+	align-items: center;
+	padding: 0.4rem 0.75rem;
+	background: var(--charty-track);
+	font-weight: 600;
 }
 
-.docsify-charty .dataset.rating .data-item > div {
-	margin-right: 1px;
-	width: 100%;
+.charty__rating-value {
+	justify-content: flex-end;
+	color: var(--charty-muted);
+	font-variant-numeric: tabular-nums;
 }
 
-.docsify-charty .dataset.rating .data-item .rating-label {
-	max-width: 10em;
-	background: var(--charty-colour-dark);
+.charty__rating-track {
+	background: var(--charty-track);
 }
 
-.docsify-charty .dataset.rating .data-item .rating-value {
-	max-width: 4em;
-	background: var(--charty-colour-medium);
+.charty__rating-fill {
+	block-size: 100%;
+	background: var(--charty-series, currentColor);
+	transition: inline-size 400ms ease;
 }
-
-.docsify-charty .dataset.rating .rating-bar-container {
-	background: var(--charty-colour-light);
-}
-
-.docsify-charty .dataset.rating .rating-bar-colour {
-	width: 0%;
-	height: 100%;
-	background: var(--charty-colour-light);
-}
-
-
-
-
 
 /*
- * breakpoints
+ * responsive
+ *
+ * Sized against the chart's own width rather than the viewport, so a chart
+ * in a narrow column stacks even on a wide screen.
  */
-@media( max-width: 800px ) {
+@container (max-width: 34rem) {
 
-	.docsify-charty .container {
-		flex-direction: column;
+	.charty--legend .charty__container {
+		grid-template-columns: minmax(0, 1fr);
 	}
-	.docsify-charty .container > * {
-		align-self: flex-start;
+
+	.charty__legend {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 0.15rem 0.5rem;
 	}
-	.docsify-charty.legend fieldset {
-		margin: 2em 0;
-		max-width: 25em;
+
+	.charty__legend-value {
+		margin-inline-start: 0;
+		padding-inline-start: 0.35rem;
 	}
 }
 
-@media( max-width: 480px ) {
-	.docsify-charty.axes .dataset[axes-vertical] {
-		margin-left: 1em;
+@container (max-width: 22rem) {
+
+	.charty__axis {
+		display: none;
 	}
+
+	.charty__plot {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/*
+ * motion
+ */
+@media (prefers-reduced-motion: reduce) {
+
+	.charty *,
+	.charty *::before,
+	.charty *::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}
+
+/*
+ * print
+ */
+@media print {
+
+	.charty {
+		--charty-fade: 1;
+		break-inside: avoid;
+	}
+
+	/* Nothing can be hovered on paper, so the numbers are always drawn. */
+	.charty__values {
+		opacity: 1;
+	}
+}
+
+/*
+ * highlighting - generated pairs
+ *
+ * One rule per series index, matching a legend entry to its shape. :has()
+ * cannot read an attribute from one element and match it on another, so the
+ * pairs are written out. Sixteen covers any chart that is still readable;
+ * beyond that nothing fades, which is a softer failure than fading the wrong
+ * shape.
+ */
+.charty:has(.charty__legend-item[data-series="0"]:is(:hover, :focus-visible)) .charty__series:not([data-series="0"]),
+.charty__data:has(.charty__series[data-series="0"]:hover) .charty__series:not([data-series="0"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="0"]:is(:hover, :focus-visible)) .charty__series[data-series="0"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="1"]:is(:hover, :focus-visible)) .charty__series:not([data-series="1"]),
+.charty__data:has(.charty__series[data-series="1"]:hover) .charty__series:not([data-series="1"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="1"]:is(:hover, :focus-visible)) .charty__series[data-series="1"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="2"]:is(:hover, :focus-visible)) .charty__series:not([data-series="2"]),
+.charty__data:has(.charty__series[data-series="2"]:hover) .charty__series:not([data-series="2"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="2"]:is(:hover, :focus-visible)) .charty__series[data-series="2"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="3"]:is(:hover, :focus-visible)) .charty__series:not([data-series="3"]),
+.charty__data:has(.charty__series[data-series="3"]:hover) .charty__series:not([data-series="3"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="3"]:is(:hover, :focus-visible)) .charty__series[data-series="3"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="4"]:is(:hover, :focus-visible)) .charty__series:not([data-series="4"]),
+.charty__data:has(.charty__series[data-series="4"]:hover) .charty__series:not([data-series="4"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="4"]:is(:hover, :focus-visible)) .charty__series[data-series="4"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="5"]:is(:hover, :focus-visible)) .charty__series:not([data-series="5"]),
+.charty__data:has(.charty__series[data-series="5"]:hover) .charty__series:not([data-series="5"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="5"]:is(:hover, :focus-visible)) .charty__series[data-series="5"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="6"]:is(:hover, :focus-visible)) .charty__series:not([data-series="6"]),
+.charty__data:has(.charty__series[data-series="6"]:hover) .charty__series:not([data-series="6"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="6"]:is(:hover, :focus-visible)) .charty__series[data-series="6"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="7"]:is(:hover, :focus-visible)) .charty__series:not([data-series="7"]),
+.charty__data:has(.charty__series[data-series="7"]:hover) .charty__series:not([data-series="7"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="7"]:is(:hover, :focus-visible)) .charty__series[data-series="7"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="8"]:is(:hover, :focus-visible)) .charty__series:not([data-series="8"]),
+.charty__data:has(.charty__series[data-series="8"]:hover) .charty__series:not([data-series="8"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="8"]:is(:hover, :focus-visible)) .charty__series[data-series="8"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="9"]:is(:hover, :focus-visible)) .charty__series:not([data-series="9"]),
+.charty__data:has(.charty__series[data-series="9"]:hover) .charty__series:not([data-series="9"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="9"]:is(:hover, :focus-visible)) .charty__series[data-series="9"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="10"]:is(:hover, :focus-visible)) .charty__series:not([data-series="10"]),
+.charty__data:has(.charty__series[data-series="10"]:hover) .charty__series:not([data-series="10"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="10"]:is(:hover, :focus-visible)) .charty__series[data-series="10"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="11"]:is(:hover, :focus-visible)) .charty__series:not([data-series="11"]),
+.charty__data:has(.charty__series[data-series="11"]:hover) .charty__series:not([data-series="11"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="11"]:is(:hover, :focus-visible)) .charty__series[data-series="11"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="12"]:is(:hover, :focus-visible)) .charty__series:not([data-series="12"]),
+.charty__data:has(.charty__series[data-series="12"]:hover) .charty__series:not([data-series="12"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="12"]:is(:hover, :focus-visible)) .charty__series[data-series="12"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="13"]:is(:hover, :focus-visible)) .charty__series:not([data-series="13"]),
+.charty__data:has(.charty__series[data-series="13"]:hover) .charty__series:not([data-series="13"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="13"]:is(:hover, :focus-visible)) .charty__series[data-series="13"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="14"]:is(:hover, :focus-visible)) .charty__series:not([data-series="14"]),
+.charty__data:has(.charty__series[data-series="14"]:hover) .charty__series:not([data-series="14"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="14"]:is(:hover, :focus-visible)) .charty__series[data-series="14"] .charty__values {
+	opacity: 1;
+}
+
+.charty:has(.charty__legend-item[data-series="15"]:is(:hover, :focus-visible)) .charty__series:not([data-series="15"]),
+.charty__data:has(.charty__series[data-series="15"]:hover) .charty__series:not([data-series="15"]) {
+	opacity: var(--charty-fade);
+}
+
+.charty:has(.charty__legend-item[data-series="15"]:is(:hover, :focus-visible)) .charty__series[data-series="15"] .charty__values {
+	opacity: 1;
 }
